@@ -1,0 +1,302 @@
+# Job Hunt System
+
+Template for managing job search process with **STARR** stories (Situation, Task, Action, Result, Reflection), employer context, and role-based CV generation.
+
+***
+
+## 📁 Structure
+
+```
+job_hunt_2026/
+├── achievements/         # YOUR achievements → written as STARR stories
+├── companies_i_worked/   # WHERE you worked → company profiles built FROM your achievements
+├── target_roles/         # WHAT you want to do next → generalized roles based on market analysis
+└── .claude/commands/     # Interactive commands to automate the process
+```
+
+**Quick guide:**
+
+* 📝 `achievements/` \= What you DID (your past achievements)
+* 🏢 `companies_i_worked/` \= WHERE you did it (companies you worked for)
+* 🎯 `target_roles/` \= What you WANT to do next (generalized roles, not specific job postings)
+* 🤖 `commands/` \= Tools to connect it all together
+
+***
+
+## 🚀 Quick Start (5 Steps)
+
+### Step 1: Quick setup (3-5 minutes) ⚡
+
+```
+/quick-setup
+```
+
+I'll quickly gather basic context about the companies where you've worked. This helps me ask better questions when you add achievements.
+
+**Optional:** I can even search online for company information during your employment dates to find relevant events, product launches, and context!
+
+**Result:** `companies_i_worked/company_[name].md` draft profiles created
+
+***
+
+### Step 2: Add your first STARR achievement
+
+```
+/add-achievement
+```
+
+Tell me about a work experience. I'll use the company context to ask specific questions and guide you through the STARR framework.
+
+**Result:** `achievements/achievement_1.md` created with rich details
+
+***
+
+### Step 3: Add a few more achievements
+
+Aim for 3-5 to start. Mix of:
+
+* Recent achievements
+* Different skills (leadership, technical, impact)
+* Different companies/roles
+
+***
+
+### Step 4: Collect job postings for a target role
+
+```
+/analyze-role
+```
+
+Paste job descriptions from multiple similar jobs. I'll extract common requirements and build a generalized role profile.
+
+**Result:** `target_roles/role_[name]/` folder created with analysis
+
+***
+
+### Step 5: Generate tailored CV
+
+```
+/map-skills
+```
+
+I'll match your achievements to the role requirements and create a CV.
+
+**Result:** `target_roles/role_[name]/cv.md` — ready to use for multiple similar jobs!
+
+***
+
+**Total time:** First setup takes 1-2 hours. After that, each new CV takes 10 minutes.
+
+***
+
+## 📖 How It Works
+
+### 1. Achievements Bank (what YOU did)
+
+Collect your work experiences as **STARR** achievements ONCE:
+
+* **S**ituation — Background and context
+* **T**ask — What needed to be done
+* **A**ction — What YOU specifically did
+* **R**esult — Measurable outcomes with numbers
+* **R**eflection — What you learned and what you'd do differently
+
+**Why STARR?** Achievements are reusable building blocks. Write once, use for many CVs.
+
+***
+
+### 2. Companies Context (WHERE you did it)
+
+For each company you worked for, the system automatically builds a profile:
+
+* Extracted from your STARR achievements (no manual work!)
+* Company overview (you provide: industry, business model)
+* Your role, responsibilities, tools, achievements (from achievements)
+
+**Key insight:** Company profiles are built FROM achievements, not separately.
+
+***
+
+### 3. Target Roles (what you WANT to do next)
+
+**Important:** These are NOT specific job postings. They're generalized roles based on market analysis.
+
+For example: "Senior Product Manager in SaaS" built from 20+ similar job descriptions.
+
+For each target role:
+
+* Collect multiple similar JDs
+* Extract common requirements and patterns
+* Identify priority keywords and skills
+* Build ONE role profile that captures the essence
+
+***
+
+### 4. Skills Mapping (do you fit?)
+
+Match your achievements to role requirements:
+
+* See which required skills your achievements demonstrate
+* Identify gaps (skills you need to develop or highlight)
+* Tier achievements: Must-have vs nice-to-have for THIS role
+
+***
+
+### 5. CV Generation (tailored for each target role)
+
+Generate a CV specifically for this generalized role:
+
+* Uses only the most relevant achievements
+* Emphasizes skills and keywords from the market analysis
+* Every bullet has metrics from your achievements
+
+**Result:** One CV that fits multiple similar jobs perfectly.
+
+***
+
+## 💡 What is STARR?
+
+**STARR** is a framework for telling compelling stories about your experiences:
+
+* **S**ituation \= What was happening? (Context, background, timeline)
+* **T**ask \= What needed to be done? (Goal, problem to solve)
+* **A**ction \= What did YOU do? (Your specific steps — focus on YOUR contribution)
+* **R**esult \= What happened? (Measurable outcomes with NUMBERS)
+* **R**eflection \= What did you learn? (Growth, what you'd do differently)
+
+**Why STARR works:**
+
+* ✅ Structured → Easy to write and read
+* ✅ Quantified → Every story has metrics
+* ✅ Reflective → Shows growth mindset
+* ✅ Reusable → Same story works for different roles
+
+**Example snippet:**
+
+```
+Situation: Our team made decisions based on gut feel...
+Task: I needed to introduce data-driven processes...
+Action: I built analytics dashboard, trained 3 teams, created weekly review...
+Result: Decision speed improved by 40%, 3 teams adopted framework...
+Reflection: I learned that change management is as important as the technical solution...
+```
+
+***
+
+## 🎯 Core Principles
+
+* **Facts only** — Never invent details. If you don't remember a metric, say so.
+* **Metrics-driven** — Every claim should have a number when possible.
+* **Reusable** — Write once, use for many CVs.
+* **Gap-aware** — Know what skills you need to demonstrate before applying.
+
+***
+
+## 📝 Key Files
+
+**For understanding the system:**
+
+* `README.md` — This file! Overview and quick start
+* `CLAUDE.md` — Detailed methodology (how the system works)
+* `TODO_BEFORE_RELEASE.md` — Known improvements planned
+
+**For managing your content:**
+
+* `achievements/achievements_index.md` — Overview of all your achievements
+* `achievements/README.md` — How to write STARR achievements
+* `companies_i_worked/companies_index.md` — Overview of all companies you've worked for
+* `companies_i_worked/README.md` — How company profiles work
+* `target_roles/README.md` — How to manage target roles
+* `target_roles/[role_name]/` — One folder per generalized role
+
+**Templates (reference when adding content):**
+
+* `achievements/template_achievement.md` — How to write a STARR achievement
+* `companies_i_worked/template_company.md` — Company profile structure
+* `target_roles/template_role/` — Complete role analysis structure
+
+**Commands (automation):**
+
+* `.claude/commands/quick_setup.md` — Collects company context upfront (3-5 min)
+* `.claude/commands/add_achievement.md` — Collects STARR achievement interactively (uses company context!)
+* `.claude/commands/add_company.md` — Updates/refines company profile from achievements
+* `.claude/commands/analyze_role.md` — Analyzes job descriptions and builds generalized role
+* `.claude/commands/map_skills.md` — Maps achievements to role + generates CV
+
+***
+
+## 🔄 How the Pieces Connect
+
+```
+⚡ /quick-setup (3-5 min)
+        ↓
+Creates draft company profiles
+        ↓
+┌──────────────────┐
+│  Achievements    │  ← Write once, with smart questions based on company context
+│ (What you did)   │
+└────────┬─────────┘
+         │ automatically feeds into
+         ↓
+┌──────────────────┐
+│Companies Worked  │  ← Auto-updated from your achievements + initial context
+│ (Where you did)  │
+└──────────────────┘
+         │
+         │ When analyzing market, achievements are matched to roles
+         ↓
+┌──────────────────┐
+│   Target Roles   │  ← Generalized roles from multiple JDs + CV
+│ (What you want   │     One folder per generalized role
+│  to do next)     │     Built from market analysis of 20+ similar jobs
+└──────────────────┘
+```
+
+**Key insight:**
+
+* Achievements & Companies \= **Permanent** (your history)
+* Target Roles \= **Dynamic** (generalized roles based on market)
+* CVs \= **Generated per role** (one CV fits multiple similar jobs)
+
+***
+
+## 🎯 Typical Workflow
+
+1. **Quick setup:** Run `/quick-setup` to gather company context (3-5 min)
+2. **Add achievements:** Add 5-10 STARR achievements (system asks smart questions based on company context)
+3. **System auto-updates:** Company profiles from those achievements
+4. **Market research:** Collect 20+ similar job postings for a role you want
+5. **Analyze market:** Run `/analyze-role` to create generalized target role
+6. **Match skills:** Run `/map-skills` to see how you fit and generate CV
+7. **Apply:** Use this ONE CV for multiple similar jobs!
+8. **Repeat:** For each new type of role, steps 4-7 (achievements & companies stay constant!)
+
+***
+
+## 📍 Project Status
+
+**Current Version:** 0.5 Alpha
+
+This is a work-in-progress template. The core structure and commands are functional, but:
+
+* Documentation is still being refined
+* Examples are being added
+* Some Claude-internal comments need cleaning
+
+**See:** `TODO_BEFORE_RELEASE.md` for what's planned before public release
+
+***
+
+## 🤝 Contributing
+
+If you use this template and have suggestions:
+
+1. Check `TODO_BEFORE_RELEASE.md` for known areas to improve
+2. Add your own improvements
+3. Share back what worked for you
+
+***
+
+**Template Version:** 0.5 Alpha
+**Created:** 2026-01
+**Status:** 🚧 In Development
