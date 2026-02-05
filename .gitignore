@@ -13,4 +13,7 @@ archive/
 
 # TODO files
 TODO_BEFORE_RELEASE.md
+
+# Personal user data
+**/my_data/
 .env

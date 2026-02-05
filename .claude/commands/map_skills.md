@@ -12,7 +12,7 @@
    - Read `skills_mapping.md` (if exists)
 
 2. **Read all achievements**:
-   - Read ALL achievement files in `achievements/` directory
+   - Read ALL story files in `achievements/my_data/` directory
    - For each story, read the FULL STAR narrative — not just tags or metadata
    - Understand what you actually did in each story
 
@@ -66,7 +66,7 @@
 
 1. **Which target role do you want to map achievements to?**
    - Type: single choice
-   - Options: List all folders in `target target_roles/` directory
+   - Options: List all folders in `target_roles/my_data/` directory
 
 ---
 
@@ -82,7 +82,7 @@ Let's map your achievements to a target role and generate a CV.
 **Claude:**
 I'll analyze the **[Role Title]** at **[Company]** target role and match it to your achievements.
 
-**[Reads target role_profile.md and all achievement files]**
+**[Reads target role_profile.md and all story files]**
 
 **Claude:**
 Here's the skills mapping:
@@ -128,7 +128,7 @@ Your CV is ready! Here's a preview:
 
 ## Tips for Me
 
-- **Be thorough** — read ALL achievement files, not just recent ones
+- **Be thorough** — read ALL story files, not just recent ones
 - **Match keywords** — look for exact phrases from JD in achievements
 - **Prioritize metrics** — achievements with numbers beat achievements without
 - **Flag gaps clearly** — don't hide missing skills
@@ -197,8 +197,8 @@ For each skill in the target role:
 
 ## Output
 
-Updated: `target target_roles/[target role_folder]/skills_mapping.md`
-Updated: `target target_roles/[target role_folder]/cv.md`
+Updated: `target_roles/my_data/[target role_folder]/skills_mapping.md`
+Updated: `target_roles/my_data/[target role_folder]/cv.md`
 
 Files created/updated:
 - ✅ Skills mapping with coverage tables and recommendations

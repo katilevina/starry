@@ -42,11 +42,11 @@ When I gather a STARR achievement from the user, I follow this structure:
    * How did this shape your professional growth?
    * What advice would you give someone in similar situation?
 
-**IMPORTANT:** I do NOT extract skills or keywords into the achievement file. Skills analysis happens ONLY in `skills_mapping.md` for each specific target role, where I deeply analyze how the achievement demonstrates required skills.
+**IMPORTANT:** I do NOT extract skills or keywords into the story file. Skills analysis happens ONLY in `skills_mapping.md` for each specific target role, where I deeply analyze how the achievement demonstrates required skills.
 
 ### Output Format
 
-Each achievement becomes a markdown file with:
+Each story becomes a markdown file with:
 
 * YAML front-metadata (role, company, dates, tags for basic organization)
 * STARR narrative (the full achievement in your words)
@@ -54,6 +54,59 @@ Each achievement becomes a markdown file with:
 
 **What goes in YAML tags:** Basic categorization for navigation (e.g., \[data, product, launch])
 **What does NOT go in achievement:** Skills breakdown, keyword extraction — these happen per-role
+
+### Achievement File Structure
+
+**REQUIRED sections (user writes):**
+
+* STARR narrative (Situation, Task, Action, Result, Reflection)
+* Quantified results (all metrics with numbers)
+
+**REQUIRED sections (I auto-generate):**
+
+* **YAML frontmatter** — title, company, role, dates, tags, metrics (for indexing and search)
+* **TOOLS & TECH STACK** — extracted from Action section (tools, methodologies)
+* **INTERVIEW USES** — ready-made answers to common interview questions, derived from achievement
+* **KEYWORD BANK** — terminological reference (industry terms, methodologies, tools) for JD keyword matching
+
+**NOT ALLOWED in achievement:**
+
+Any section that links achievement to specific roles or job requirements. These live in `target_roles/[role_name]/skills_mapping.md` instead:
+
+* ❌ Skills breakdown or analysis (per-role deep analysis of how achievement demonstrates skills)
+* ❌ "Maps to Requirements" (job-specific requirement mapping)
+* ❌ "Best For Roles" (role recommendations depend on target role being applied for)
+* ❌ Any role-specific or job-specific categorization
+
+**Principle:** Achievement files are role-agnostic evidence sources. Skills analysis, role matching, and job requirement mapping happens when analyzing specific target roles, not in the achievement itself.
+
+### When User Imports Pre-Written Achievements
+
+**Strategy: Preserve value → Apply structure rules**
+
+When user adds story files they've already written:
+
+1. **Assess quality first:**
+   * Complete STARR structure? ✅
+   * Metrics present? ✅
+   * Reflection included? ✅
+   * Sufficient detail? ✅
+2. **Apply minimal adaptations:**
+   * Add missing REQUIRED sections (YAML, Tools, Interview Uses, Keyword Bank) — I auto-generate these
+   * Remove any disallowed role-specific sections (see "NOT ALLOWED" above)
+   * Update file naming to match convention (achievement\_*.md, company\_*.md)
+   * Link to related company file: `**See also:** [[company_X]]`
+   * Update index files (stories\_index.md, companies\_index.md)
+3. **Preserve user's content:**
+   * DO NOT rewrite STARR narrative to match "template"
+   * DO NOT change their voice or structure
+   * Keep all their valid content
+4. **Naming convention:**
+   * Stories: `story_[descriptive_slug].md` (lowercase)
+   * Companies: `company_[slug].md` (lowercase)
+   * I suggest proper names based on content, user can adjust
+
+**Quality principle:** High-quality existing content > template compliance. Structure rules ensure consistency without destroying valuable content.
 
 ### Example Achievement File
 
@@ -101,7 +154,7 @@ I needed to introduce a data-driven decision framework that would align the team
 - Learned to balance technical quality with organizational buy-in
 ```
 
-**Note:** No skills listed here. When I analyze this achievement for a "Data Analyst" target role, I'll extract how it demonstrates data analysis, stakeholder management, and process improvement — but that analysis lives in `skills_mapping.md`, NOT in the achievement file.
+**Note:** No skills listed here. When I analyze this achievement for a "Data Analyst" target role, I'll extract how it demonstrates data analysis, stakeholder management, and process improvement — but that analysis lives in `skills_mapping.md`, NOT in the story file.
 
 ***
 
@@ -113,9 +166,9 @@ I needed to introduce a data-driven decision framework that would align the team
 
 When creating a company profile:
 
-1. **First, check if achievements exist:**
-   * Search all achievement files for this company name
-   * If NO achievements exist → ask user: "Do you have achievements for this company yet?"
+1. **First, check if stories exist:**
+   * Search all story files for this company name
+   * If NO stories exist → ask user: "Do you have achievements for this company yet?"
      * If NO: Collect basic info manually, but add warning: "⚠️ This profile will be auto-updated once you add achievements"
      * If YES: Encourage adding achievements first, then return to company profile
    * If achievements exist → proceed to step 2
@@ -133,7 +186,7 @@ When creating a company profile:
    * Examples: company industry, business model, overall context
    * Focus on high-level company info (not job details — those are in achievements)
 5. **Link achievements automatically:**
-   * Find all achievement files with `company: "X"` in YAML
+   * Find all story files with `company: "X"` in YAML
    * Create `[[achievement_X]]` references
    * Update achievements\_index.md to cross-link back
 
