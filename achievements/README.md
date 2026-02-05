@@ -29,7 +29,7 @@ A structured way to describe your achievements:
 
 * `template_achievement.md` — Use this when writing a new achievement
 * `achievements_index.md` — Overview of all your achievements
-* `achievement_[name].md` — Your individual achievements
+* `story_[name].md` — Your individual achievements
 
 ***
 
@@ -46,7 +46,7 @@ This will guide you through writing a complete STARR achievement.
 **Option 2: Manual**
 
 1. Copy `template_achievement.md`
-2. Rename to `achievement_[descriptive_name].md`
+2. Rename to `story_[descriptive_name].md`
 3. Fill in all sections
 
 ***

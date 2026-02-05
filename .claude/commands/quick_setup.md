@@ -7,8 +7,8 @@
 ## Instructions for Me (Claude)
 
 1. **Check for existing data:**
-   - Search for existing company profiles in `companies_i_worked/`
-   - Search for existing achievements in `achievements/`
+   - Search for existing company profiles in `companies_i_worked/my_data/`
+   - Search for existing achievements in `achievements/my_data/`
    - If found → show user what exists
 
 2. **If data already exists:**
@@ -66,14 +66,16 @@
    - If no: Proceed to next company or create profile with basic info
 
 7. **Create or update company profiles:**
-   - Use `companies_i_worked/template_company.md` structure
+   - **Template source:**
+     - If user has skills enabled → use template from `/add-company` skill
+     - If user doesn't have skills → use `companies_i_worked/template_company.md`
    - If new: Set `status: draft` and `achievements_based_on: 0`
    - If updating: Keep `achievements_based_on` count, update status
    - Merge info: existing + achievements + new input + web research
-   - Create or update file: `companies_i_worked/company_[slug].md`
+   - Create or update file: `companies_i_worked/my_data/company_[slug].md`
 
 8. **Update index:**
-   - Add to or update `companies_i_worked/companies_index.md`
+   - Add to or update `companies_i_worked/my_data/companies_index.md`
    - Mark status appropriately (draft or complete)
 
 9. **Confirm next steps:**
@@ -233,8 +235,8 @@ New company detected! Let me gather details...
 
 ## Output
 
-Created: `companies_i_worked/company_[slug].md` (draft)
-Updated: `companies_i_worked/companies_index.md`
+Created: `companies_i_worked/my_data/company_[slug].md` (draft)
+Updated: `companies_i_worked/my_data/companies_index.md`
 
 Files have:
 - Basic company info (industry, size, model, dates)
