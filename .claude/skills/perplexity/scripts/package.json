@@ -1,0 +1,21 @@
+{
+  "name": "perplexity-search-skill",
+  "version": "1.0.0",
+  "description": "Perplexity Search API integration for Claude Code",
+  "type": "module",
+  "main": "dist/perplexity_search.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/perplexity_search.js"
+  },
+  "dependencies": {
+    "@perplexity-ai/perplexity_ai": "^0.16.0",
+    "dotenv": "^16.0.0",
+    "yargs": "^17.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/yargs": "^17.0.0",
+    "typescript": "^5.0.0"
+  }
+}

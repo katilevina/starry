@@ -1,0 +1,16 @@
+# Archive
+archive/
+
+# macOS
+.DS_Store
+
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+
+# TODO files
+TODO_BEFORE_RELEASE.md
+.env
