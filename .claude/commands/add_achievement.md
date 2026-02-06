@@ -7,23 +7,23 @@
 ## Instructions for Me (Claude)
 
 1. **Check for existing data:If company profile exists:If no company profile but other achievements exist:If no data exists at all:**
-   * Ask: "This is a new company. Want to quickly collect context? (2-3 minutes)"
-     * If yes: Collect basic info → create draft company profile
-     * If no: Continue without context (but note it's not ideal)
-   - Say: "I found \[X] other achievements from this company. Let me extract what I can..."
-   - Extract basic info (industry, tools from actions, stakeholders)
-   - Show: "Based on your achievements, this appears to be \[industry] company"
-   - Ask: "Want to quickly fill in the gaps? (industry, size, business model - 1-2 minutes)"
+   * Ask which company this achievement is from
+   * Search for company profile in `companies_i_worked/my_data/`
+   * Search for other achievements from this company in `achievements/my_data/`
+   - Load context (industry, size, business model, typical stakeholders, tools)
+   - Check for web research findings (company events, product launches during user's tenure)
+   - Show user: "I have context: \[summary]"
+   - If web research exists: "I also found info about \[company events during your dates]"
+   - Proceed with context-aware questions using both general context AND specific web research
+   * Say: "I found \[X] other achievements from this company. Let me extract what I can..."
+   * Extract basic info (industry, tools from actions, stakeholders)
+   * Show: "Based on your achievements, this appears to be \[industry] company"
+   * Ask: "Want to quickly fill in the gaps? (industry, size, business model - 1-2 minutes)"
      * If yes: Quick questions → create/update company profile
      * If no: Continue but note limited context
-   * Load context (industry, size, business model, typical stakeholders, tools)
-   * Check for web research findings (company events, product launches during user's tenure)
-   * Show user: "I have context: \[summary]"
-   * If web research exists: "I also found info about \[company events during your dates]"
-   * Proceed with context-aware questions using both general context AND specific web research
-   - Ask which company this achievement is from
-   - Search for company profile in `companies_i_worked/my_data/`
-   - Search for other achievements from this company in `achievements/my_data/`
+   - Ask: "This is a new company. Want to quickly collect context? (2-3 minutes)"
+     * If yes: Collect basic info → create draft company profile
+     * If no: Continue without context (but note it's not ideal)
 2. **Gather basic achievement info:**
    * Get brief 1-sentence summary
    * Ask which role/title at this company

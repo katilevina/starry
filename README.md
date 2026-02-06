@@ -1,6 +1,44 @@
 # Job Hunt System
 
+> **A systematic, AI-driven framework to organize your career history and generate tailored CVs in minutes.**
+
+**Status:** 🚧 Work in Progress | **Version:** 0.5 Alpha
+
 Template for managing job search process with **STARR** stories (Situation, Task, Action, Result, Reflection), employer context, and role-based CV generation.
+
+**What this is:** A **file-first** knowledge system that works with any AI assistant — not a standalone program. Just copy the folder, open it in your AI agent, and start using commands.
+
+***
+
+## ⚙️ Prerequisites
+
+Before using this system, you need:
+
+* **Any AI assistant** with file access (Claude, ChatGPT, Cursor, Windsurf, Kojori, etc.)
+* **Basic AI literacy** — ability to open folders and chat with AI
+* **Time investment** — 1-2 hours for initial setup, 10 min per subsequent CV
+
+**What you DON'T need:**
+* ❌ No coding skills required
+* ❌ No Python/JavaScript installation
+* ❌ No specific AI subscription (works with free and paid tiers)
+
+***
+
+## 🚀 Installation (Step 0)
+
+**This is a file-first project — just copy and open!**
+
+1. **Download or clone** this repository to your computer
+2. **Open the folder** in your AI agent:
+   * **Claude:** Create Project → Upload folder
+   * **Cursor:** Open Folder
+   * **Windsurf:** Open Workspace
+   * **Kojori:** Open Workspace
+   * **ChatGPT:** Upload files or paste `CLAUDE.md` as system prompt
+3. **Start using commands:** Type `/quick-setup` to begin
+
+**That's it!** The AI agent will read the structure and guide you through interactive workflows.
 
 ***
 
@@ -183,6 +221,25 @@ Reflection: I learned that change management is as important as the technical so
 
 ***
 
+## 🔄 Before/After: STARR Transformation
+
+**Before (vague input):**
+> "I fixed a slow database query."
+
+**After (STARR achievement):**
+>
+> **Situation:** Our e-commerce platform was experiencing slow checkout times. Customers were abandoning carts at a 35% rate during peak hours, and the database was maxing out at 100% CPU.
+>
+> **Task:** I needed to identify and optimize the bottleneck causing slow checkout performance.
+>
+> **Action:** I profiled the database and discovered a missing index on the `orders` table. I implemented a composite index on `customer_id` and `created_at`, rewrote the query to use the index, and set up monitoring to track query performance.
+>
+> **Result:** Checkout query time dropped from 2.1s to 0.4s (81% improvement). CPU usage during peak hours decreased from 100% to 45%. Cart abandonment rate dropped from 35% to 22% within 2 weeks.
+>
+> **Reflection:** I learned that systematic profiling beats guessing. Next time, I'll set up performance monitoring before issues become critical.
+
+***
+
 ## 🎯 Core Principles
 
 * **Facts only** — Never invent details. If you don't remember a metric, say so.
@@ -294,6 +351,12 @@ If you use this template and have suggestions:
 1. Check `TODO_BEFORE_RELEASE.md` for known areas to improve
 2. Add your own improvements
 3. Share back what worked for you
+
+***
+
+## 📄 License
+
+Distributed under the MIT License. See [`LICENSE`](LICENSE) for more information.
 
 ***
 
