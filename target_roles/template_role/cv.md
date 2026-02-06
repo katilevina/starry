@@ -1,3 +1,11 @@
+> **⚠️ SYNC RULE:** This template must be kept in sync with `.claude/skills/skill_job_analysis.md`
+> When updating this template, also update the skill file to keep them consistent.
+>
+> **Why both exist:**
+> - Skill file (.claude/skills/) = primary source with theory + template
+> - Folder template = backup for users without skills support
+> - Commands use folder templates when skills aren't available
+
 ---
 role: "Job Title"
 company: "Target Company"
