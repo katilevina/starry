@@ -1,13 +1,21 @@
----
+> **⚠️ SYNC RULE:** This template must be kept in sync with `.claude/skills/skill_starr_achievements.md`
+> When updating this template, also update the skill file to keep them consistent.**Why both exist:**- Skill file (.claude/skills/) \= primary source with theory + template
+> - Folder template \= backup for users without skills support
+> - Commands use folder templates when skills aren't available
+
+***
+
 title: "SHORT DESCRIPTIVE TITLE (what you did)"
 company: "Company Name"
 role: "Your Role Title"
 dates: "YYYY-YYYY"
-tags: [skill-1, skill-2, skill-3]
+tags: \[skill-1, skill-2, skill-3]
 metrics:
-  - type: "category (efficiency/revenue/adoption/etc)"
-    value: "X% or X number impact"
----
+
+* type: "category (efficiency/revenue/adoption/etc)"
+  value: "X% or X number impact"
+
+***
 
 ## Situation (S)
 
