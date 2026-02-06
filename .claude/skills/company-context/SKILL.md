@@ -1,10 +1,11 @@
-# Company Context Skill
-
-**Purpose:** Complete guide to gathering company context upfront to enable better achievement gathering, including web research for triggering memories
-
+---
+name: company-context
+description: Quick setup workflow for collecting company context upfront, including web research to trigger memories and enable smarter achievement gathering. Use when starting fresh, adding new companies, or updating existing company profiles before adding achievements.
 ---
 
-## 🎯 Why Gather Context First?
+# Company Context
+
+## Why Gather Context First?
 
 ### Benefits
 
@@ -26,7 +27,7 @@
 
 ---
 
-## 📚 Quick Setup Process
+## Quick Setup Process
 
 ### Step 1: Check for Existing Data
 
@@ -96,7 +97,7 @@ Ask: "Want me to search online for information about [Company Name] during [YYYY
 **If new:**
 - Set `status: draft`
 - Set `achievements_based_on: 0`
-- Use template from `skill_company_profiles.md`
+- Use template from company-profiles skill
 
 **If updating:**
 - Keep `achievements_based_on` count
@@ -110,7 +111,7 @@ Ask: "Want me to search online for information about [Company Name] during [YYYY
 
 ---
 
-## 🌐 Web Research Feature
+## Web Research Feature
 
 ### Why Web Research Helps
 
@@ -211,7 +212,9 @@ This will help me ask better questions! For example: "Did you work on the AcmePr
 
 ---
 
-## 🎯 How Context Improves Achievement Gathering
+See [Quick Setup Reference](references/quick_setup_reference.md) for detailed workflow examples.
+
+## How Context Improves Achievement Gathering
 
 ### Before Context (Generic Questions)
 
@@ -238,7 +241,7 @@ This will help me ask better questions! For example: "Did you work on the AcmePr
 
 ---
 
-## 📋 Data Structure
+## Data Structure
 
 ### What Gets Collected
 
@@ -274,22 +277,22 @@ This will help me ask better questions! For example: "Did you work on the AcmePr
 
 ---
 
-## ✅ Quality Checklist
+## Quality Checklist
 
 Before finishing quick setup:
 
-- [ ] Checked for existing data first (companies + achievements)
-- [ ] If achievements exist, showed what I extracted before asking questions
-- [ ] Collected employment dates (REQUIRED for web research)
-- [ ] Offered web research for each company
-- [ ] Marked web-researched info with `source: web_research` tag
-- [ ] Created or updated company profiles
-- [ ] Updated companies_index.md
-- [ ] Confirmed next steps with user
+* [ ] Checked for existing data first (companies + achievements)
+* [ ] If achievements exist, showed what I extracted before asking questions
+* [ ] Collected employment dates (REQUIRED for web research)
+* [ ] Offered web research for each company
+* [ ] Marked web-researched info with `source: web_research` tag
+* [ ] Created or updated company profiles
+* [ ] Updated companies_index.md
+* [ ] Confirmed next steps with user
 
 ---
 
-## 🔗 Integration with Other Skills
+## Integration with Other Skills
 
 ### With STARR Achievements
 
@@ -299,20 +302,6 @@ Before finishing quick setup:
 - Check for web research findings
 - Use context + web research to ask smart questions
 
-**Example:**
-```
-I have context for [Company]:
-- SaaS company, 50-200 people, B2B subscription
-- Typical teams: Product, Engineering, Customer Success
-- Standard tools: Jira, Figma, Amplitude
-
-I also found info from your time there [YYYY-YYYY]:
-- Launched [Product X] in [Year]
-- Grew from [X] to [Y] employees
-
-This helps me ask specific questions!
-```
-
 ### With Company Profiles
 
 **When user runs `/add-company`:**
@@ -320,53 +309,3 @@ This helps me ask specific questions!
 - If achievements exist, extract from them
 - Fill gaps with targeted questions
 - Web research findings already in profile from quick setup
-
----
-
-## 📝 Example Conversation Flow
-
-**User:** /quick-setup
-
-**Claude checks for existing data...**
-
-**Scenario A: Fresh start (no data)**
-
-**Claude:**
-Great! Let's quickly set up context for your work history. This will help me ask better questions when you add achievements.
-
-**[Quiz: number of companies, list companies]**
-
-**Claude:**
-Got it! Let me gather a few details about each company.
-
-**[For Company 1 - Quiz with 6 questions including employment dates]**
-
-**Claude:**
-I found some interesting information about Acme Corp online during your employment (2020-2023):
-- In 2021, they raised Series B funding and grew from 50 to 150 employees
-- Launched their flagship product "AcmePro" in 2022
-- Expanded to European market in early 2023
-
-This will help me ask better questions! For example: "Did you work on the AcmePro launch in 2022?"
-
-**User confirms or adjusts info**
-
-**[For Company 2 - Quiz with 6 questions including employment dates]**
-
-**Claude:**
-Want me to search online for TechCorp during 2018-2020?
-
-**User: No**
-
-**[Repeat for all companies]**
-
-**Claude:**
-✅ Setup complete! I've created draft company profiles for:
-- company_acme_corp.md (SaaS, B2B, 50-200 people, with web research)
-- company_techcorp.md (E-commerce, B2C, 1000+ people, basic info only)
-
-Ready to add your first achievement? Use `/add-achievement`
-
----
-
-**Last Updated:** 2026-01
