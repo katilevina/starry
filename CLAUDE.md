@@ -15,41 +15,42 @@
 
 ***
 
-## 📚 SKILLS (Detailed Guides)
+## 📚 SKILLS (Agent Skills Format)
 
-**Skills are comprehensive guides** for each major workflow. Each skill includes theory, algorithms, and templates.
+**Skills are comprehensive guides** for each major workflow. Skills follow the [Agent Skills specification](https://agentskills.io/specification.md).
 
 ### Available Skills
 
-**📝 STARR Achievements** → `.claude/skills/skill_starr_achievements.md`
+**📝 STARR Achievements** → `.claude/skills/starr-achievements/SKILL.md`
 
 * Complete guide to creating achievement stories
 * STARR structure (Situation, Task, Action, Result, Reflection)
 * Number mining and metrics extraction
-* Achievement template
+* Achievement template in `references/achievement_template.md`
 * Importing pre-written achievements
 
-**🏢 Company Profiles** → `.claude/skills/skill_company_profiles.md`
+**🏢 Company Profiles** → `.claude/skills/company-profiles/SKILL.md`
 
 * Building company profiles FROM achievements (not the other way around)
 * Auto-extraction of responsibilities, tools, team size from achievements
-* Company profile template
+* Company profile template in `references/company_template.md`
 * Extraction algorithms
 
-**🎯 Job Analysis & CV Generation** → `.claude/skills/skill_job_analysis.md`
+**🎯 Job Analysis & CV Generation** → `.claude/skills/job-analysis/SKILL.md`
 
 * Analyzing job descriptions (JDs)
 * Extracting requirements, keywords, and skills by priority
 * Skills mapping algorithm
-* Three templates: role\_profile, skills\_mapping, cv
+* Three templates in `references/`: role_profile_template.md, skills_mapping_template.md, cv_template.md
 * CV generation rules
 
-**⚡ Company Context** → `.claude/skills/skill_company_context.md`
+**⚡ Company Context** → `.claude/skills/company-context/SKILL.md`
 
 * Quick setup: collecting company context upfront
 * Web research for triggering memories
 * How context enables smarter achievement gathering
 * Integration with other workflows
+* Reference guide in `references/quick_setup_reference.md`
 
 ***
 
@@ -97,30 +98,30 @@
 
 **CRITICAL:** Templates exist in TWO places and must be kept in sync:
 
-1. **In skills** (`.claude/skills/skill_*.md`) — source of truth for theory + templates
+1. **In skill references/** (`.claude/skills/[skill-name]/references/*.md`) — source of truth for templates
 2. **In folders** (`achievements/template_achievement.md`, `companies_i_worked/template_company.md`, `target_roles/template_role/*.md`) — for users who don't have skills enabled
 
 **When updating templates:**
 
-* If you update a template in a skill file → ALSO update the corresponding file in the folder
-* If you update a template in a folder → ALSO update the corresponding skill file
-* Each skill file includes a reminder: `**⚠️ SYNC RULE:** This template must be kept in sync with [path]`
+* If you update a template in `references/` → ALSO update the corresponding file in the folder
+* If you update a template in a folder → ALSO update the corresponding file in `references/`
+* Each reference file includes a reminder: `**⚠️ SYNC RULE:** This template must be kept in sync with [path]`
 
 **Why both exist:**
 
-* Skills \= primary source (theory + template together)
+* Skills \= primary source (theory + template in `references/` subdirectory)
 * Folder templates \= backup for users without skills support
 * Templates in folders are also used by commands when user doesn't have skills enabled
-* **Skills in `.claude/skills/` work as plugins** — can be invoked with tools for enhanced functionality
+* **Skills in `.claude/skills/` follow Agent Skills specification** — each skill is a directory with `SKILL.md` file
 
 **Current template locations:**
 
-| Skill                      | Skill Template            | Folder Template                                                                                                                      |
-| -------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| skill\_starr\_achievements | In skill file             | `achievements/template_achievement.md`                                                                                               |
-| skill\_company\_profiles   | In skill file             | `companies_i_worked/template_company.md`                                                                                             |
-| skill\_job\_analysis       | 3 templates in skill file | `target_roles/template_role/role_profile.md`<br>`target_roles/template_role/skills_mapping.md`<br>`target_roles/template_role/cv.md` |
-| skill\_company\_context    | No template               | N/A                                                                                                                                  |
+| Skill                      | Skill Reference Template            | Folder Template                                                                                                                      |
+| -------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| starr-achievements         | `references/achievement_template.md` | `achievements/template_achievement.md`                                                                                               |
+| company-profiles           | `references/company_template.md`     | `companies_i_worked/template_company.md`                                                                                             |
+| job-analysis               | `references/role_profile_template.md`<br>`references/skills_mapping_template.md`<br>`references/cv_template.md` | `target_roles/template_role/role_profile.md`<br>`target_roles/template_role/skills_mapping.md`<br>`target_roles/template_role/cv.md` |
+| company-context            | `references/quick_setup_reference.md` | N/A (reference guide only)                                                                                                           |
 
 ***
 
@@ -262,11 +263,25 @@ starry/
 ├── CLAUDE.md                    # This file - overview
 ├── README.md                    # User documentation
 ├── .claude/
-│   ├── skills/                  # Skills (detailed guides, work as plugins)
-│   │   ├── skill_starr_achievements.md
-│   │   ├── skill_company_profiles.md
-│   │   ├── skill_job_analysis.md
-│   │   └── skill_company_context.md
+│   ├── skills/                  # Agent Skills format (each skill is a directory)
+│   │   ├── starr-achievements/
+│   │   │   ├── SKILL.md         # Main skill file with YAML frontmatter
+│   │   │   └── references/
+│   │   │       └── achievement_template.md
+│   │   ├── company-profiles/
+│   │   │   ├── SKILL.md
+│   │   │   └── references/
+│   │   │       └── company_template.md
+│   │   ├── job-analysis/
+│   │   │   ├── SKILL.md
+│   │   │   └── references/
+│   │   │       ├── role_profile_template.md
+│   │   │       ├── skills_mapping_template.md
+│   │   │       └── cv_template.md
+│   │   └── company-context/
+│   │       ├── SKILL.md
+│   │       └── references/
+│   │           └── quick_setup_reference.md
 │   └── commands/                # Commands (interactive flows)
 │       ├── quick_setup.md
 │       ├── add_achievement.md
@@ -274,17 +289,17 @@ starry/
 │       ├── analyze_role.md
 │       └── map_skills.md
 ├── achievements/
-│   ├── template_achievement.md  # ⚠️ Keep synced with skill
+│   ├── template_achievement.md  # ⚠️ Keep synced with skill reference
 │   └── my_data/
 │       ├── story_[slug].md
 │       └── stories_index.md
 ├── companies_i_worked/
-│   ├── template_company.md      # ⚠️ Keep synced with skill
+│   ├── template_company.md      # ⚠️ Keep synced with skill reference
 │   └── my_data/
 │       ├── company_[slug].md
 │       └── companies_index.md
 └── target_roles/
-    ├── template_role/           # ⚠️ Keep synced with skill
+    ├── template_role/           # ⚠️ Keep synced with skill references
     │   ├── role_profile.md
     │   ├── skills_mapping.md
     │   └── cv.md
@@ -306,4 +321,6 @@ starry/
 
 ***
 
-**For detailed workflows, theory, and templates, see the skills in `.claude/skills/`**
+**For detailed workflows, theory, and templates, see the skills in `.claude/skills/[skill-name]/SKILL.md`**
+
+**Skills follow Agent Skills specification:** https://agentskills.io/specification.md
