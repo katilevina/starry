@@ -50,7 +50,8 @@
    * Identify soft skills (leadership, communication)
    * Ask user to confirm/add more
 6. **Create the file**:
-   * Use template: `achievements/my_data/story_[slug].md`
+   * **Determine chronological number:** Count existing `story_XX_*.md` files in `achievements/my_data/` and assign next sequential number (e.g., if story_01 through story_04 exist, next is story_05)
+   * Use template: `achievements/my_data/story_[number]_[slug].md` (e.g., `story_05_knowledge_capture.md`)
    * **Template source:**
      * If user has skills enabled → use template from this skill file (see "Achievement Template" section below)
      * If user doesn't have skills → use `achievements/template_achievement.md`
@@ -229,7 +230,7 @@ Here's your achievement. Any edits needed, or shall I save it?
   * "How did this prepare you for future roles?"
 * **DO NOT extract skills into the achievement** — skills analysis happens per-role in skills\_mapping.md
 * **Tags are for navigation only** — basic categories like "data", "product", "launch"
-* **Generate a clear slug** — use lowercase with underscores, e.g., `story_data_framework.md`
+* **Generate a clear slug** — use lowercase with underscores, e.g., `story_05_data_framework.md` (with chronological number)
 * **Always update the index** — don't forget this step
 * **Leverage web research findings** — Use specific company events/milestones to trigger memories
   * "In \[Year], \[Company] \[launched X / raised funding / grew to Y people]. Did your achievement relate to this?"
@@ -240,7 +241,7 @@ Here's your achievement. Any edits needed, or shall I save it?
 
 ## Output
 
-New file created: `achievements/my_data/story_[slug].md`
+New file created: `achievements/my_data/story_[XX]_[slug].md` (with chronological number, e.g., `story_05_knowledge_capture.md`)
 Updated: `achievements/my_data/stories_index.md`
 
 ***

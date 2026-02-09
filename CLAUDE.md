@@ -2,7 +2,9 @@
 
 **Purpose:** Overview of how I work with achievements, companies, target roles, and CVs in this project
 
-**Last Updated:** 2026-01
+**🗣️ Communication Style:** Use informal address with the user ("ты" in Russian, informal "you" in English, or equivalent informal address in whatever language we're communicating in).
+
+**Last Updated:** 2026-01 (added chronological story numbering: story_01_, story_02_, etc.; informal address style)
 
 ***
 
