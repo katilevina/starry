@@ -4,6 +4,8 @@ archive/
 # macOS
 .DS_Store
 
+# Environment files
+.env
 
 # Temporary files
 *.tmp
@@ -16,4 +18,3 @@ TODO_BEFORE_RELEASE.md
 
 # Personal user data
 **/my_data/
-.env
