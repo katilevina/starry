@@ -1,126 +1,246 @@
-> **⚠️ SYNC RULE:** This template must be kept in sync with `.claude/skills/skill_company_profiles.md`
+> **⚠️ SYNC RULE:** This template must be kept in sync with `.claude/skills/company-profiles/references/company_template.md`
 > When updating this template, also update the skill file to keep them consistent.
 >
 > **Why both exist:**
 > - Skill file (.claude/skills/) = primary source with theory + template
 > - Folder template = backup for users without skills support
 > - Commands use folder templates when skills aren't available
+>
+> **⚠️ IMPORTANT PRINCIPLE:** Company files should NOT duplicate content from story files.
+> - Stories = your STARR narratives (what you did)
+> - Company = company-specific context (where you worked)
+> - No auto-extraction of responsibilities/tools/achievements from stories
+> - Company context should supplement, not repeat, story content
 
 ---
 company: "Company Name"
-industry: "Industry (e.g., SaaS, E-commerce, Healthcare)"
-size: "Company size (e.g., 50-200 employees, Series B)"
-business_model: "How they make money (e.g., B2B subscription, marketplace)"
-your_role: "Your Job Title"
+industry: "Industry / Sector"
+size: "Company size (e.g., Startup (10 employees), Large Enterprise (1000+ employees))"
+business_model: "How they make money (e.g., B2B SaaS subscription, B2C marketplace)"
+your_role: "Your Job Title(s) — can show progression"
 duration: "YYYY-YYYY"
-dates: "YYYY-YYYY"  # Your employment dates
-stories_based_on: 0  # Will be updated when stories are added
+dates: "Month YYYY - Month YYYY"
+achievements_based_on: 0  # Will be updated when stories are added
+website: "https://company-website.com" # Optional
 ---
+
+# Company Name (YYYY-YYYY)
+
+**One-line description of what the company does**
+
+***
 
 ## Company Overview
 
-**What they do:**
-\[Brief description of company's product/service and who they serve]
+### What [Company Name] Does
 
-**Market position:**
-\[Where they fit in their industry — startup, incumbent, niche player]
+[Detailed description of company's product/service and value proposition]
 
-***
+**How it works:**
 
-## Web Research Findings (Optional)
+1. **[Step 1]:** [Explanation]
+2. **[Step 2]:** [Explanation]
+3. **[Step 3]:** [Explanation]
 
-*Information gathered from online sources during your employment period*
+**Core value proposition:** [What problem they solve and for whom]
 
-**Key events during your tenure \[YYYY-YYYY]:**
+### Product Positioning
 
-* \[Major product launch, funding round, company milestone] *(source: web\_research, date: YYYY)*
-* \[Another relevant event] *(source: web\_research, date: YYYY)*
+[Where the product fits in the market — bridges gap between X and Y, focuses on Z segment]
 
-**Products/features you might have worked on:**
+### Core Product Features
 
-* \[Product name] — \[Launched YYYY, what it does] *(source: web\_research)*
-* \[Feature name] — \[Launched YYYY, target audience] *(source: web\_research)*
+**[Product/Platform Name]:**
 
-**Company context during your tenure:**
+* **[Feature 1]** — [Description and why it matters]
+* **[Feature 2]** — [Description and why it matters]
+* **[Feature 3]** — [Description and why it matters]
 
-* \[Size, growth phase, major changes] *(source: web\_research)*
+**Key product questions we solved:**
 
-***
+* How to [challenge 1]? → [Solution]
+* How to [challenge 2]? → [Solution]
+* How to [challenge 3]? → [Solution]
 
-## Your Role Context
+**Brands & Product Evolution** (if applicable):
 
-**Why you were hired:**
-\[What problem they needed you to solve]
-*Note: This should align with stories you add for this company*
+* **[Brand 1]** — [Description, time period]
+* **[Brand 2]** — [Description, time period]
 
-***
+**Business Model** (if relevant):
 
-## Key Responsibilities
-
-*This section is auto-generated from your STARR stories*
-
-**Core duties:**
-
-* \[Primary responsibility 1] *(from story\_X, story\_Y)*
-* \[Primary responsibility 2] *(from story\_Z)*
-* \[Primary responsibility 3] *(from story\_X)*
-
-**Projects owned:**
-
-* \[Major project 1] *(from story\_X)*
-* \[Major project 2] *(from story\_Y)*
+* **[Model 1]:** [Description]
+* **[Model 2]:** [Description]
 
 ***
 
-## Tools & Stack
+## Your Role Context / Role Evolution
 
-*Extracted from your stories' Action sections*
+### Timeline
 
-**Tools you used:**
+* **Joined:** [Date, hired as X]
+* **[Promotion/transition]:** [Date, what changed]
+* **[Additional milestones]:** [Dates and key moments]
+* **Departure:** [Context]
 
-* \[Tool 1] — \[What you used it for] *(from story\_X)*
-* \[Tool 2] — \[What you used it for] *(from story\_Y)*
-* \[Tool 3] — \[What you used it for] *(from story\_Z)*
+### Key Responsibilities
 
-**Methodologies:**
+**As [Role 1] ([Date range]):**
 
-* \[Framework or process 1] *(from story\_X)*
-* \[Framework or process 2] *(from story\_Y)*
+* [Primary responsibilities in this role]
+
+**As [Role 2] ([Date range]):**
+
+* [Primary responsibilities in this role]
+
+**As [Role 3] ([Date range]):**
+
+* [Primary responsibilities in this role]
+
+### Cross-Functional Leadership
+
+**Direct Reports:**
+
+* **[Number] [role]** ([context]) — [relationship]
+* **[Number] [role]** ([context]) — [relationship]
+
+**Influence-Based Coordination (no direct authority):**
+
+* **[Team/group]** ([size/context]) — [how you worked together]
+* **[Team/group]** ([size/context]) — [how you worked together]
+
+**Stakeholder Management:**
+
+* [Key stakeholders and how you collaborated]
+
+**Process Rollout:**
+
+* [Tools/processes you implemented]
 
 ***
 
-## Key Achievements
+## Key Stories from This Role
 
-*Compiled from Result sections of your stories*
+### 1. [[story_[slug]]] — [Story Title]
 
-**Quantified impact:**
+**The Impact:** [One sentence summary of why this mattered]
 
-* \[Achievement 1 with metric] *(from story\_X)*
-* \[Achievement 2 with metric] *(from story\_Y)*
-* \[Achievement 3 with metric] *(from story\_Z)*
+[2-3 sentence summary of the story — what you did, why it was important, key outcome]
 
-**Related STAR stories:**
-
-* \[\[story\_X]] — \[Brief description]
-* \[\[story\_Y]] — \[Brief description]
-* \[\[story\_Z]] — \[Brief description]
+**Key Achievement:** [The core accomplishment]
 
 ***
 
-## Company Culture & Context
+### 2. [[story_[slug]]] — [Story Title]
 
-**Work environment:**
-\[Remote/hybrid, pace, decision-making style]
+**The Impact:** [One sentence summary of why this mattered]
 
-**Challenges specific to this company:**
-\[Any unique constraints or opportunities]
+[2-3 sentence summary of the story — what you did, why it was important, key outcome]
+
+**Key Achievement:** [The core accomplishment]
 
 ***
 
-## Lessons Learned
+### 3. [[story_[slug]]] — [Story Title]
 
-**What this job taught you:**
-\[Key takeaways from Reflection sections of your stories]
+**The Impact:** [One sentence summary of why this mattered]
 
-**Skills developed here:**
-\[Skills you grew in this role — should match evidence in stories]
+[2-3 sentence summary of the story — what you did, why it was important, key outcome]
+
+**Key Achievement:** [The core accomplishment]
+
+***
+
+## Company Context
+
+### Founding Story & Company Evolution ([Years])
+
+#### [Phase 1] ([Years])
+
+[Origin story — how the company started, founding team, initial product]
+
+#### [Phase 2] ([Years])
+
+[Major milestones, pivots, growth phases]
+
+#### [Phase 3] ([Years])
+
+[Additional context about company evolution during your tenure]
+
+### Scale & Stage ([Your employment years])
+
+#### Financial Metrics
+
+* **Revenue:** [ARR/revenue during your tenure]
+* **Growth:** [Growth rate or trajectory]
+* **Funding:** [Funding stage, key rounds]
+
+#### Client Scale
+
+* **Total Clients:** [Number and type of customers]
+* **Industries:** [Key industries served]
+* **Total Users:** [User base size]
+
+#### Product Usage
+
+* **Core use case:** [Primary way customers use the product]
+* **Key features:**
+  * [Feature 1]
+  * [Feature 2]
+  * [Feature 3]
+
+#### Key Achievements (Company-Level)
+
+[Major company milestones during your tenure — not your personal achievements, those go in stories]
+
+### Industry & Market Context
+
+#### Time Period ([Your employment years])
+
+* [Relevant industry trends, technology landscape]
+* [Economic/regulatory context if relevant]
+
+#### Geographic Context
+
+* **Primary market:** [Countries/regions]
+* **International expansion:** [Any expansion during your tenure]
+
+### Go-to-Market Strategy & Revenue Model (if relevant)
+
+#### GTM Strategy
+
+[How the company acquires customers — sales motion, marketing channels, partnerships]
+
+**[Channel 1]:**
+
+* [Details about this channel]
+
+**[Channel 2]:**
+
+* [Details about this channel]
+
+**GTM Strategy Insights:**
+
+* [Key insights about what worked/didn't work]
+
+#### Revenue Trajectory
+
+**[Years]:**
+
+* **[Year] Revenue:** [Revenue figure]
+* **[Growth metrics]:** [Key growth numbers]
+
+**Key Client Deployments:**
+
+* **[Client 1]:** [Details]
+* **[Client 2]:** [Details]
+
+**[Note if applicable]:** [Context about your role vs. other team members' contributions]
+
+***
+
+## Last Updated
+
+[Month YYYY]
+
+**For full story details, see individual story files in this folder**
