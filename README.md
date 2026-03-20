@@ -2,9 +2,11 @@
 
 > **A systematic, AI-driven framework to organize your career history and generate tailored CVs in minutes.**
 
-**Status:** 🚧 Work in Progress | **Version:** 0.5 Alpha
+**Status:** 🚧 Alpha Release | **Version:** 0.5.0 | **Feedback Welcome!**
 
 Template for managing job search process with **STARR** stories (Situation, Task, Action, Result, Reflection), employer context, and role-based CV generation.
+
+> ⚠️ **This is an Alpha release** — Core functionality works, but documentation and examples are still being refined. See [Known Limitations](#-known-limitations-alpha) below.
 
 **What this is:** A **file-first** knowledge system that works with any AI assistant — not a standalone program. Just copy the folder, open it in your AI agent, and start using commands.
 
@@ -124,6 +126,22 @@ I'll match your achievements to the role requirements and create a CV.
 ***
 
 **Total time:** First setup takes 1-2 hours. After that, each new CV takes 10 minutes.
+
+***
+
+## ⚠️ Known Limitations (Alpha)
+
+This is an **early release** — some features are still being refined:
+
+- [ ] **Templates** — Need inline examples (currently have abstract placeholders)
+- [ ] **Documentation** — Claude-internal comments in some templates (planned to remove)
+- [ ] **Guides** — No "Getting Started" guide yet (see README for now)
+- [ ] **Testing** — Not tested with external users yet (you're among the first!)
+- [ ] **LinkedIn** — Optimization skill in development
+
+**Roadmap:** See [TODO_BEFORE_RELEASE.md](TODO_BEFORE_RELEASE.md) for what's planned for v0.6 (Beta) and v1.0 (Stable).
+
+**Feedback wanted!** Please open issues or share your thoughts — this is an active work in progress.
 
 ***
 
