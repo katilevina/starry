@@ -4,7 +4,7 @@
 
 **🗣️ Communication Style:** Use informal address with the user ("ты" in Russian, informal "you" in English, or equivalent informal address in whatever language we're communicating in).
 
-**Last Updated:** 2026-01 (added chronological story numbering: story_01_, story_02_, etc.; informal address style)
+**Last Updated:** 2026-01 (added chronological story numbering: story\_01\_, story\_02\_, etc.; informal address style)
 
 ***
 
@@ -43,7 +43,7 @@
 * Analyzing job descriptions (JDs)
 * Extracting requirements, keywords, and skills by priority
 * Skills mapping algorithm
-* Three templates in `references/`: role_profile_template.md, skills_mapping_template.md, cv_template.md
+* Three templates in `references/`: role\_profile\_template.md, skills\_mapping\_template.md, cv\_template.md
 * CV generation rules
 
 **⚡ Company Context** → `.claude/skills/company-context/SKILL.md`
@@ -118,12 +118,12 @@
 
 **Current template locations:**
 
-| Skill                      | Skill Reference Template            | Folder Template                                                                                                                      |
-| -------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
-| starr-achievements         | `references/achievement_template.md` | `achievements/template_achievement.md`                                                                                               |
-| company-profiles           | `references/company_template.md`     | `companies_i_worked/template_company.md`                                                                                             |
-| job-analysis               | `references/role_profile_template.md`<br>`references/skills_mapping_template.md`<br>`references/cv_template.md` | `target_roles/template_role/role_profile.md`<br>`target_roles/template_role/skills_mapping.md`<br>`target_roles/template_role/cv.md` |
-| company-context            | `references/quick_setup_reference.md` | N/A (reference guide only)                                                                                                           |
+| Skill              | Skill Reference Template                                                                                        | Folder Template                                                                                                                      |
+| ------------------ | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| starr-achievements | `references/achievement_template.md`                                                                            | `achievements/template_achievement.md`                                                                                               |
+| company-profiles   | `references/company_template.md`                                                                                | `companies_i_worked/template_company.md`                                                                                             |
+| job-analysis       | `references/role_profile_template.md`<br>`references/skills_mapping_template.md`<br>`references/cv_template.md` | `target_roles/template_role/role_profile.md`<br>`target_roles/template_role/skills_mapping.md`<br>`target_roles/template_role/cv.md` |
+| company-context    | `references/quick_setup_reference.md`                                                                           | N/A (reference guide only)                                                                                                           |
 
 ***
 
@@ -136,6 +136,35 @@
 **Target Roles:** `role_[slug]/` folder with files inside (e.g., `role_google_pmm/`)
 
 **ALL LOWERCASE** (except CLAUDE.md, README.md)
+
+***
+
+## ⚠️ CRITICAL: Chronological Story Numbering
+
+**ALL achievements MUST be numbered chronologically by start date, NOT by creation order.**
+
+**When creating a new achievement:**
+
+1. Extract `dates:` field from ALL existing story files
+2. Sort ALL stories (existing + new) by start date chronologically
+3. Assign sequential numbers: story\_01, story\_02, story\_03...
+4. **If new story belongs in the middle:**
+   * Rename ALL subsequent files (e.g., story\_03 → story\_04, story\_04 → story\_05...)
+   * Update ALL references in: stories\_index.md, company files, companies\_index.md
+   * Then create the new file with correct number
+
+**Example:**
+
+* Existing: story\_01 (2015), story\_02 (2019), story\_03 (2020)
+* New story from 2017
+* **Correct:** New becomes story\_02, old story\_02 → story\_03, old story\_03 → story\_04
+* **Wrong:** New becomes story\_04 (breaks chronological order)
+
+**Why this matters:**
+
+* Shows evolution of skills over time
+* Creates logical reading sequence
+* CV generation assumes chronological order
 
 ***
 
@@ -325,4 +354,4 @@ starry/
 
 **For detailed workflows, theory, and templates, see the skills in `.claude/skills/[skill-name]/SKILL.md`**
 
-**Skills follow Agent Skills specification:** https://agentskills.io/specification.md
+**Skills follow Agent Skills specification:** [https://agentskills.io/specification.md](https://agentskills.io/specification.md)

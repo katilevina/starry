@@ -50,7 +50,18 @@
    * Identify soft skills (leadership, communication)
    * Ask user to confirm/add more
 6. **Create the file**:
-   * **Determine chronological number:** Count existing `story_XX_*.md` files in `achievements/my_data/` and assign next sequential number (e.g., if story_01 through story_04 exist, next is story_05)
+   * **Determine chronological number:**
+     * Extract the `dates:` field from ALL existing story files in `achievements/my_data/`
+     * Sort ALL stories (existing + new) by start date chronologically
+     * Assign the correct position number to the new story
+     * **IMPORTANT:** If the new story belongs in the middle of the sequence, you MUST:
+       1. Rename ALL subsequent story files (e.g., story_03 → story_04, story_04 → story_05, etc.)
+       2. Update ALL cross-references in stories_index.md, company files, and companies_index.md
+       3. Then create the new file with the correct number
+     * Example: If story_01 (2015), story_02 (2016), story_03 (2019) exist, and new story is from 2017:
+       - New story becomes story_03
+       - Old story_03 becomes story_04
+       - Update all references
    * Use template: `achievements/my_data/story_[number]_[slug].md` (e.g., `story_05_knowledge_capture.md`)
    * **Template source:**
      * If user has skills enabled → use template from this skill file (see "Achievement Template" section below)
@@ -221,6 +232,11 @@ Here's your achievement. Any edits needed, or shall I save it?
 
 ## Tips for Me
 
+* **⚠️ CHRONOLOGICAL NUMBERING IS CRITICAL:**
+  * **ALWAYS check dates BEFORE creating file** — Extract `dates:` from ALL existing stories, sort chronologically, determine correct position
+  * **If new story belongs in middle:** Rename ALL subsequent files + update ALL references (stories_index.md, company files, companies_index.md)
+  * **Wrong example:** story_01 (2015), story_02 (2019), story_03 (2020). New story from 2016 → becomes story_02, NOT story_04
+  * **Right approach:** Sort ALL stories by date first, then number sequentially
 * **Be persistent about metrics** — don't accept "it improved" without a number
 * **Keep user focused on THEIR actions** — not what "we" did
 * **Probe deeply in Reflection** — this is where growth mindset shows

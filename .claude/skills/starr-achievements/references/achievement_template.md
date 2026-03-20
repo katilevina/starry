@@ -3,6 +3,14 @@
 **⚠️ SYNC RULE:** This template must be kept in sync with `achievements/template_achievement.md`
 When updating this template, also update the file in the achievements folder.
 
+## ⚠️ KEY PRINCIPLES
+
+**Achievements are ROLE-AGNOSTIC evidence sources:**
+- ✅ DO include: STARR narrative, metrics, tools/tech stack, what you learned
+- ❌ DO NOT include: Skills analysis, "maps to requirements", "best for roles", interview prep for specific job types
+- ✅ CORRECT: "I did X, achieved Y metric, used Z tools"
+- ❌ WRONG: "This demonstrates leadership for fund roles" or "Interview use: answer this question with..."
+
 ```yaml
 ---
 title: "SHORT DESCRIPTIVE TITLE (what you did)"
@@ -92,47 +100,3 @@ metrics:
 **Advice I'd give someone else:**
 
 * \[What you'd tell someone facing similar challenge]
-
-***
-
-## Auto-Generated Sections
-
-### Tools & Tech Stack (Extracted from Action)
-
-**Tools used:**
-
-* \[Tool 1] — \[What for]
-* \[Tool 2] — \[What for]
-
-**Methodologies:**
-
-* \[Framework 1]
-* \[Framework 2]
-
-### Interview Uses (Derived from Achievement)
-
-**"Tell me about a time you led change":**
-\[Use this achievement - focus on Action section]
-
-**"Tell me about a challenge you faced":**
-\[Use Situation + Task + what you learned in Reflection]
-
-**"What's your greatest achievement?":**
-\[Use Result metrics + business impact]
-
-### Keyword Bank (Terminological Reference)
-
-**Industry terms:**
-
-* \[Term 1] — \[Context from achievement]
-* \[Term 2] — \[Context]
-
-**Tools/methodologies:**
-
-* \[Tool name] — \[How you used it]
-
-**Action verbs:**
-
-* led, launched, managed, \[verbs from your actions]
-
-**Purpose:** This bank helps match JD keywords when applying for roles.

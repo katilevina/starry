@@ -1,9 +1,22 @@
 > **⚠️ SYNC RULE:** This template must be kept in sync with `.claude/skills/skill_starr_achievements.md`
-> When updating this template, also update the skill file to keep them consistent.**Why both exist:**- Skill file (.claude/skills/) \= primary source with theory + template
-> - Folder template \= backup for users without skills support
+> When updating this template, also update the skill file to keep them consistent.
+>
+> **Why both exist:**
+> - Skill file (.claude/skills/) = primary source with theory + template
+> - Folder template = backup for users without skills support
 > - Commands use folder templates when skills aren't available
-
-***
+>
+> ***
+>
+> ## ⚠️ KEY PRINCIPLES
+>
+> **Achievements are ROLE-AGNOSTIC evidence sources:**
+> - ✅ DO include: STARR narrative, metrics, tools/tech stack, what you learned
+> - ❌ DO NOT include: Skills analysis, "maps to requirements", "best for roles", interview prep for specific job types
+> - ✅ CORRECT: "I did X, achieved Y metric, used Z tools"
+> - ❌ WRONG: "This demonstrates leadership for fund roles" or "Interview use: answer this question with..."
+>
+> ***
 
 title: "SHORT DESCRIPTIVE TITLE (what you did)"
 company: "Company Name"
