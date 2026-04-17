@@ -2,7 +2,7 @@
 
 > **A systematic, AI-driven framework to organize your career history and generate tailored CVs in minutes.**
 
-**Status:** 🚧 Alpha Release | **Version:** 0.5.0 | **Feedback Welcome!**
+**Status:** 🚧 Alpha Release | **Version:** 0.5.1 | **Feedback Welcome!**
 
 Template for managing job search process with **STARR** stories (Situation, Task, Action, Result, Reflection), employer context, and role-based CV generation.
 
@@ -425,6 +425,6 @@ Distributed under the MIT License. See [`LICENSE`](LICENSE) for more information
 
 ***
 
-**Template Version:** 0.5 Alpha
+**Template Version:** 0.5.1 Alpha
 **Created:** 2026-01
 **Status:** 🚧 In Development
