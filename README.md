@@ -44,6 +44,53 @@ Before using this system, you need:
 
 ***
 
+## 🔐 For Personal Use (Recommended)
+
+This repository is a **template** for your job hunt. To safely store your personal career data, create your own private copy:
+
+### Option 1: Clone & Create Private Repository (Recommended)
+
+1. **Clone this repository**
+   ```bash
+   git clone https://github.com/katilevina/starry.git my-starry
+   cd my-starry
+   ```
+
+2. **Create a PRIVATE repository on GitHub**
+   - Go to https://github.com/new
+   - Name it: "my-starry" or "job-hunt-system"
+   - ⚠️ **IMPORTANT:** Select **Private** visibility
+   - Don't initialize with README, .gitignore, or license
+   - Click "Create repository"
+
+3. **Connect to your private repository**
+   ```bash
+   git remote set-url origin git@github.com:YOUR_USERNAME/my-starry.git
+   git push -u origin main
+   ```
+
+4. **Now you can safely add your personal data**
+   - Add stories to `achievements/my_data/`
+   - Add companies to `companies_i_worked/my_data/`
+   - Everything stays in YOUR private repository ✅
+
+### Option 2: Download & Work Locally
+
+If you prefer not to use GitHub:
+
+1. Download this repository as ZIP
+2. Extract to your preferred folder
+3. Open in your AI agent
+4. Your data stays on your computer only
+
+**Why use a private repository?**
+- ✅ Automatic backup in the cloud
+- ✅ Access from multiple devices
+- ✅ Version history (never lose work)
+- ✅ Your personal data stays PRIVATE
+
+***
+
 ## 📁 Structure
 
 ```
