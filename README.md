@@ -2,7 +2,7 @@
 
 > **A systematic, AI-driven framework to organize your career history and generate tailored CVs in minutes.**
 
-**Status:** 🚧 Alpha Release | **Version:** 0.5.1 | **Feedback Welcome!**
+**Status:** 🚧 Alpha Release | **Version:** 0.5.0 | **Feedback Welcome!**
 
 Template for managing job search process with **STARR** stories (Situation, Task, Action, Result, Reflection), employer context, and role-based CV generation.
 
@@ -333,7 +333,7 @@ Reflection: I learned that change management is as important as the technical so
 
 **Templates (reference when adding content):**
 
-* `achievements/template_achievement.md` — How to write a STARR achievement
+* `achievements/template_story.md` — How to write a STARR story
 * `companies_i_worked/template_company.md` — Company profile structure
 * `target_roles/template_role/` — Complete role analysis structure
 
@@ -425,6 +425,6 @@ Distributed under the MIT License. See [`LICENSE`](LICENSE) for more information
 
 ***
 
-**Template Version:** 0.5.1 Alpha
+**Template Version:** 0.5 Alpha
 **Created:** 2026-01
 **Status:** 🚧 In Development

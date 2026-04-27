@@ -4,7 +4,20 @@
 
 **🗣️ Communication Style:** Use informal address with the user ("ты" in Russian, informal "you" in English, or equivalent informal address in whatever language we're communicating in).
 
-**Last Updated:** 2026-01 (added chronological story numbering: story\_01\_, story\_02\_, etc.; informal address style)
+**Last Updated:** 2026-04 (added bash note for hidden folders)
+
+***
+
+## ⚠️ TOOL USAGE NOTE
+
+**Glob не видит скрытые папки** (начинающиеся с `.`). Папка `.claude/` скрытая — для её просмотра всегда используй `bash` с командами `find` или `ls -la`, а не Glob.
+
+Пример:
+
+```bash
+find /path/to/project/.claude -type f | sort
+ls -la /path/to/project/.claude/skills/
+```
 
 ***
 
@@ -101,7 +114,7 @@
 **CRITICAL:** Templates exist in TWO places and must be kept in sync:
 
 1. **In skill references/** (`.claude/skills/[skill-name]/references/*.md`) — source of truth for templates
-2. **In folders** (`achievements/template_achievement.md`, `companies_i_worked/template_company.md`, `target_roles/template_role/*.md`) — for users who don't have skills enabled
+2. **In folders** (`achievements/template_story.md`, `achievements/template_stories_index.md`, `companies_i_worked/template_company.md`, `target_roles/template_role/*.md`) — for users who don't have skills enabled
 
 **When updating templates:**
 
@@ -118,12 +131,12 @@
 
 **Current template locations:**
 
-| Skill              | Skill Reference Template                                                                                        | Folder Template                                                                                                                      |
-| ------------------ | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| starr-achievements | `references/achievement_template.md`                                                                            | `achievements/template_achievement.md`                                                                                               |
-| company-profiles   | `references/company_template.md`                                                                                | `companies_i_worked/template_company.md`                                                                                             |
-| job-analysis       | `references/role_profile_template.md`<br>`references/skills_mapping_template.md`<br>`references/cv_template.md` | `target_roles/template_role/role_profile.md`<br>`target_roles/template_role/skills_mapping.md`<br>`target_roles/template_role/cv.md` |
-| company-context    | `references/quick_setup_reference.md`                                                                           | N/A (reference guide only)                                                                                                           |
+| Skill              | Skill Reference Template                                                              | Folder Template                                                            |
+| ------------------ | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| starr-achievements | `references/achievement_template.md`                                                  | `achievements/template_story.md`, `achievements/template_stories_index.md`                                     |
+| company-profiles   | `references/company_template.md`                                                      | `companies_i_worked/template_company.md`                                   |
+| job-analysis       | `references/role_profile_template.md`, `skills_mapping_template.md`, `cv_template.md` | `target_roles/template_role/role_profile.md`, `skills_mapping.md`, `cv.md` |
+| company-context    | `references/quick_setup_reference.md`                                                 | N/A (reference guide only)                                                 |
 
 ***
 
@@ -239,7 +252,6 @@ Before finalizing any document:
 * Metrics (all numbers)
 * Tools & Tech Stack (what you used)
 * Interview Uses (ready-made answers)
-* Keyword Bank (terminology for JD matching)
 
 **What does NOT go in achievement:**
 
@@ -320,7 +332,8 @@ starry/
 │       ├── analyze_role.md
 │       └── map_skills.md
 ├── achievements/
-│   ├── template_achievement.md  # ⚠️ Keep synced with skill reference
+│   ├── template_story.md               # ⚠️ Keep synced with skill reference
+│   ├── template_stories_index.md       # ⚠️ Keep synced with skill reference
 │   └── my_data/
 │       ├── story_[slug].md
 │       └── stories_index.md

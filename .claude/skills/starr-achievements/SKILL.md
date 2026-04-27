@@ -21,6 +21,13 @@ A structured story that demonstrates your skills through measurable results:
 
 **FACTS ONLY** — Never invent or assume. If something is missing → ask the user
 
+**Anti-fabrication examples:**
+
+* User says "I analyzed student questions" → ❌ do NOT write "identified top 10 friction points" (they never said "10")
+* User says "I mapped processes" → ❌ do NOT write "conducted structured interviews in 3 phases" (they never said "3 phases")
+* User says "we had metrics" → ❌ do NOT write "tracked 15 KPIs including..." (they never said "15")
+* ✅ Use the user's exact words. If you need specificity → ASK: "Did you track specific metrics? How many friction points?"
+
 **NO SKILLS IN ACHIEVEMENT FILES** — Skills analysis happens per-target-role in `skills_mapping.md`, not in the achievement itself. Achievements are role-agnostic evidence sources.
 
 **EVERY CLAIM NEEDS A NUMBER** — Before/after metrics, percentages, time saved, revenue impact, team size affected, budget managed.
@@ -85,6 +92,45 @@ Always ask for:
 
 ***
 
+## Writing Quality Examples
+
+### Good vs Bad ACTIONS
+
+❌ "I improved the process"
+✅ "I mapped current workflow in Miro, identified 3 bottlenecks using JTBD framework, eliminated 2 approval steps, and automated status updates in Jira"
+
+**Why:** Specific tools, specific steps, specific numbers. This is where the work shows.
+
+### Good vs Bad RESULTS
+
+❌ "The process was faster"
+✅ "Reduced cycle time from 2 weeks to 3 days (85% improvement), enabling team to handle 3× more requests"
+
+**Why:** Before/after numbers + business context of what the improvement enabled.
+
+### Good vs Bad REFLECTIONS
+
+❌ "I learned a lot"
+✅ "I learned that technical solutions alone don't fix process problems — you need to address human behavior and incentives. Next time I'd involve stakeholders earlier in design."
+
+**Why:** Specific insight + actionable "what I'd change" \= shows growth mindset.
+
+### What Makes a Strong Action Section
+
+* Detailed steps with tools/methods mentioned
+* YOUR actions ("I did X"), not team actions ("we did X")
+* Specific: names of tools, frameworks, approaches
+* Sequential: step 1, 2, 3
+
+### What Makes a Strong Result Section
+
+* Before/after numbers
+* Percentage or multiplier improvements
+* Business context (what the number means)
+* Who benefited and how
+
+***
+
 ## Achievement File Structure
 
 ### REQUIRED Sections (User Provides)
@@ -97,7 +143,6 @@ Always ask for:
 1. **YAML frontmatter** — title, company, role, dates, tags, metrics
 2. **TOOLS & TECH STACK** — Extracted from Action section
 3. **INTERVIEW USES** — Ready-made answers to common interview questions
-4. **KEYWORD BANK** — Industry terms, methodologies, tools for JD matching
 
 ### NOT ALLOWED in Achievement Files
 
@@ -135,7 +180,7 @@ Before importing user-written stories:
 
 **2. Apply minimal adaptations**
 
-* Add missing REQUIRED sections (YAML, Tools, Interview Uses, Keyword Bank)
+* Add missing REQUIRED sections (YAML, Tools, Interview Uses)
 * Remove any role-specific sections (see NOT ALLOWED above)
 * Update file naming to match convention
 * Link to related company file: `**See also:** [[company_X]]`
@@ -188,6 +233,15 @@ Before finalizing any achievement:
 * [ ] Achievement is complete (S-T-A-R-R all filled)
 * [ ] Reflection is thoughtful and honest
 * [ ] No skills/keywords extracted (that's per-target-role)
+* [ ] No contradicting metrics with other stories
 * [ ] Linked to related companies
 * [ ] Follows naming convention
 * [ ] Ready for template use
+
+### Cross-Reference Check
+
+When creating or updating an achievement, verify against existing stories:
+
+* [ ] **Timeline consistency** — dates don't overlap impossibly with other stories from same company
+* [ ] **Metric consistency** — same metric (e.g., revenue, team size) mentioned in multiple stories doesn't contradict
+* [ ] **Company context alignment** — description of company situation aligns across stories from same period

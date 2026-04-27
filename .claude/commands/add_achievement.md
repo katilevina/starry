@@ -55,17 +55,17 @@
      * Sort ALL stories (existing + new) by start date chronologically
      * Assign the correct position number to the new story
      * **IMPORTANT:** If the new story belongs in the middle of the sequence, you MUST:
-       1. Rename ALL subsequent story files (e.g., story_03 → story_04, story_04 → story_05, etc.)
-       2. Update ALL cross-references in stories_index.md, company files, and companies_index.md
+       1. Rename ALL subsequent story files (e.g., story\_03 → story\_04, story\_04 → story\_05, etc.)
+       2. Update ALL cross-references in stories\_index.md, company files, and companies\_index.md
        3. Then create the new file with the correct number
-     * Example: If story_01 (2015), story_02 (2016), story_03 (2019) exist, and new story is from 2017:
-       - New story becomes story_03
-       - Old story_03 becomes story_04
-       - Update all references
+     * Example: If story\_01 (2015), story\_02 (2016), story\_03 (2019) exist, and new story is from 2017:
+       * New story becomes story\_03
+       * Old story\_03 becomes story\_04
+       * Update all references
    * Use template: `achievements/my_data/story_[number]_[slug].md` (e.g., `story_05_knowledge_capture.md`)
    * **Template source:**
      * If user has skills enabled → use template from this skill file (see "Achievement Template" section below)
-     * If user doesn't have skills → use `achievements/template_achievement.md`
+     * If user doesn't have skills → use `achievements/template_story.md`
    * Generate appropriate slug from title
    * Fill in all YAML front-matter
    * Write complete STAR narrative
@@ -234,8 +234,8 @@ Here's your achievement. Any edits needed, or shall I save it?
 
 * **⚠️ CHRONOLOGICAL NUMBERING IS CRITICAL:**
   * **ALWAYS check dates BEFORE creating file** — Extract `dates:` from ALL existing stories, sort chronologically, determine correct position
-  * **If new story belongs in middle:** Rename ALL subsequent files + update ALL references (stories_index.md, company files, companies_index.md)
-  * **Wrong example:** story_01 (2015), story_02 (2019), story_03 (2020). New story from 2016 → becomes story_02, NOT story_04
+  * **If new story belongs in middle:** Rename ALL subsequent files + update ALL references (stories\_index.md, company files, companies\_index.md)
+  * **Wrong example:** story\_01 (2015), story\_02 (2019), story\_03 (2020). New story from 2016 → becomes story\_02, NOT story\_04
   * **Right approach:** Sort ALL stories by date first, then number sequentially
 * **Be persistent about metrics** — don't accept "it improved" without a number
 * **Keep user focused on THEIR actions** — not what "we" did
@@ -245,13 +245,13 @@ Here's your achievement. Any edits needed, or shall I save it?
   * "What would you change?"
   * "How did this prepare you for future roles?"
 * **DO NOT extract skills into the achievement** — skills analysis happens per-role in skills\_mapping.md
-* **Tags are for navigation only** — basic categories like "data", "product", "launch"
+* **Tags are for navigation only** — basic categories like "data", "product", "launch" (added to index, not to story file)
 * **Generate a clear slug** — use lowercase with underscores, e.g., `story_05_data_framework.md` (with chronological number)
 * **Always update the index** — don't forget this step
 * **Leverage web research findings** — Use specific company events/milestones to trigger memories
   * "In \[Year], \[Company] \[launched X / raised funding / grew to Y people]. Did your achievement relate to this?"
   * This helps users connect their work to company context they may have forgotten
-* **Template sync** — When updating the achievement template below, also update `achievements/template_achievement.md` to keep them in sync
+* **Template sync** — When updating the achievement template below, also update `achievements/template_story.md` to keep them in sync
 
 ***
 
@@ -264,55 +264,41 @@ Updated: `achievements/my_data/stories_index.md`
 
 ## Achievement Template
 
-**⚠️ IMPORTANT:** This template must be kept in sync with `achievements/template_achievement.md`
+**⚠️ IMPORTANT:** This template must be kept in sync with `achievements/template_story.md`
 When updating this template, also update the file in the achievements folder.
 
 ```markdown
----
-title: "SHORT DESCRIPTIVE TITLE (what you did)"
-company: "Company Name"
-role: "Your Role Title"
-dates: "YYYY-YYYY"
-tags: [category-1, category-2, category-3]
-metrics:
-  - type: "category (efficiency/revenue/adoption/etc)"
-    value: "X% or X number impact"
----
+### [Title]
+
+**When:** [Period]
+**Company:** [Company Name]
+**Context:** [Your role and 1-2 sentence summary of what happened]
+
+**See also:** [[company_[slug]]]
+
+***
 
 ## Situation (S)
 
-**Context:**
-
-* What was the background?
-* What team/company situation?
-* What were the stakes or constraints?
-
-**Timeline:** When did this happen?
+[Background and context. What was the situation? What were the stakes or constraints?]
 
 ***
 
 ## Task (T)
 
-**What needed to be done:**
-
-* What was the goal?
-* What problem needed solving?
-* What was your responsibility?
+[What needed to be done? What was the goal and your responsibility?]
 
 ***
 
 ## Action (A)
 
-**What you specifically did:**
+[What you specifically did, step by step. Include tools used, stakeholders involved, decisions made.]
 
-* Step 1: [Action you took]
-* Step 2: [Action you took]
-* Step 3: [Action you took]
+**Tools & Tech Stack:**
 
-**Tools/Methods used:**
-
-* [Tool/framework 1]
-* [Tool/framework 2]
+* **My Tools:** [Tools you personally used — e.g., Jira, Figma, Notion, CRM]
+* **Methodologies:** [Frameworks and approaches — e.g., JTBD, Agile, Lean Six Sigma]
+* **Team Tech Stack:** [Technologies your team used — e.g., Python, React, Postgres]
 
 **Stakeholders involved:**
 

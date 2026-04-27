@@ -1,12 +1,10 @@
 # Achievements Folder
 
-**What goes here:** Your work achievements written as STARR format
+Your work achievements written in STARR format.
 
 ***
 
-## 📝 What is a STARR Achievement?
-
-A structured way to describe your achievements:
+## What is a STARR Achievement?
 
 * **S**ituation — Background and context
 * **T**ask — What needed to be done
@@ -16,24 +14,34 @@ A structured way to describe your achievements:
 
 ***
 
-## 🎯 Why Write Achievements Here?
+## Why This Structure?
 
-1. **Write once, use forever** — Same achievement can be used for multiple CVs
-2. **Metrics-focused** — Forces you to quantify your impact
+1. **Write once, use forever** — Same achievement feeds into multiple CVs
+2. **Metrics-focused** — Forces you to quantify impact
 3. **No repetition** — Don't retell the same achievement in different ways
-4. **Always ready** — When you're analyzing roles, you already have material
+4. **Always ready** — When you analyze roles, you already have material
+5. **Role-agnostic** — Achievements are evidence sources; skill mapping happens per target role
 
 ***
 
-## 📂 Files in This Folder
+## Folder Structure
 
-* `template_achievement.md` — Use this when writing a new achievement
-* `achievements_index.md` — Overview of all your achievements
-* `story_[name].md` — Your individual achievements
+```
+achievements/
+├── README.md                       # This file
+├── template_story.md               # Template for new stories
+├── template_stories_index.md       # Template for stories index
+└── my_data/
+    ├── README.md                   # Instructions for my_data folder
+    ├── stories_index.md            # Table of contents (by company, dates, context)
+    ├── story_01_[slug].md          # Your stories
+    ├── story_02_[slug].md
+    └── ...
+```
 
 ***
 
-## 🚀 How to Add Achievements
+## How to Add Stories
 
 **Option 1: Use command**
 
@@ -41,32 +49,21 @@ A structured way to describe your achievements:
 /add-achievement
 ```
 
-This will guide you through writing a complete STARR achievement.
-
 **Option 2: Manual**
 
-1. Copy `template_achievement.md`
-2. Rename to `story_[descriptive_name].md`
+1. Copy `template_story.md` into `my_data/`
+2. Rename to `story_[number]_[descriptive_slug].md`
 3. Fill in all sections
+4. Add entry to `my_data/stories_index.md` using `template_stories_index.md` as reference
 
 ***
 
-## 💡 Tips
+## Tips
 
 * **Start with wins** — Document your proudest moments first
 * **Focus on YOUR actions** — Not what "we" did, what YOU did
 * **Always include metrics** — Numbers make achievements credible
 * **Be honest in Reflection** — What would you do differently?
-
-***
-
-## 📊 How Many Achievements?
-
-Target: **5-10 achievements** to start
-
-* 2-3 from your most recent role
-* 1-2 from each previous role
-* Focus on variety: leadership, technical, process, impact
 
 ***
 
