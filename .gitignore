@@ -1,0 +1,21 @@
+# Archive
+archive/
+
+# macOS
+.DS_Store
+
+# Environment files
+.env
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+
+# TODO files
+TODO_BEFORE_RELEASE.md
+
+# Personal user data
+# Uncomment the line below if using in PUBLIC repository
+# **/my_data/
