@@ -133,6 +133,24 @@ Always ask for:
 
 ## Achievement File Structure
 
+### Story Types
+
+Every story has a `**Type:**` field that determines how it's used across the system:
+
+* **`employment`** (default) — Work at a company as an employee or long-term contractor. Gets a company profile. Appears in CV Experience section. Numbered chronologically with company-first grouping.
+* **`project`** — Side project, consulting gig, personal project, volunteer work. No company profile. In CV: may appear in optional Projects section or Summary, never in Experience. Numbered after all employment stories.
+
+**How to determine type:**
+* If the user was employed/contracted by a company → `employment`
+* If it's a one-off project, personal initiative, or freelance → `project`
+* When in doubt → ask the user
+
+**Impact on workflows:**
+* Company profiles are built from `employment` stories only
+* CV Experience section uses `employment` stories only
+* Skills mapping analyzes ALL stories (both types) for coverage
+* Projects don't participate in company-first chronological renumbering
+
 ### REQUIRED Sections (User Provides)
 
 1. **STARR narrative** — Situation, Task, Action, Result, Reflection
@@ -234,8 +252,9 @@ Before finalizing any achievement:
 * [ ] Reflection is thoughtful and honest
 * [ ] No skills/keywords extracted (that's per-target-role)
 * [ ] No contradicting metrics with other stories
-* [ ] Linked to related companies
+* [ ] Linked to related companies *(employment only — project stories don't link to companies)*
 * [ ] Follows naming convention
+* [ ] Type field present (`employment` or `project`)
 * [ ] Ready for template use
 
 ### Cross-Reference Check

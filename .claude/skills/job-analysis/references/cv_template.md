@@ -72,6 +72,18 @@ Summary or mission: [Strong verb] [team/project] [product] [result in numbers]
 
 ---
 
+**⚠️ OPTIONAL: Projects** — Only include this section if a project story clearly strengthens the candidate's position for THIS specific role. Do not add by default.
+
+Projects
+
+**[Project Name]**	[Period]
+
+[Brief description — what it is, scale, your role] · [Key metric or result]
+
+*(1-2 lines max per project. Format: project name, what it is, scale, one impressive metric.)*
+
+---
+
 Certifications
 
 Course title [add link], Source	Month 20XX

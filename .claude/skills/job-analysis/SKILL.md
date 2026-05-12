@@ -1,15 +1,22 @@
 ---
 name: job-analysis
-description: Complete workflow for analyzing job descriptions, mapping achievements to roles, and generating tailored CVs. Use when applying for jobs, preparing for interviews, or creating targeted resumes. Covers JD analysis, skills mapping with evidence-based matching, and CV generation.
+description: Complete workflow for analyzing job descriptions, mapping achievements to roles, assessing readiness, and generating tailored CVs. Use when applying for jobs, preparing for interviews, or creating targeted resumes. Covers JD analysis, skills mapping with evidence-based matching, readiness assessment with consultant-style gap advice, and CV generation.
 ---
 
 # Job Analysis & Skills Mapping
 
-This skill combines three related workflows:
+This skill combines four related workflows:
 
 1. **Job Description Analysis** — Extract and categorize requirements from JDs
 2. **Skills Mapping** — Match achievements to role requirements with evidence
-3. **CV Generation** — Create tailored resumes from skills mapping
+3. **Readiness Assessment** — Decide whether to apply, strengthen first, take a pause, or pivot. **This is a hard gate before CV generation.**
+4. **CV Generation** — Create tailored resumes ONLY after readiness assessment chooses 🟢 Go
+
+**⚠️ Two-command split:**
+- `/map-skills` does steps 1-3 (analysis + readiness assessment + decision)
+- `/generate-cv` does step 4 (CV generation only after explicit "Go" decision)
+
+**Why split:** Skills mapping is analytical. CV generation is a commitment. Splitting them creates a deliberate consultation moment so we don't auto-generate CVs that hide real gaps.
 
 ---
 
@@ -127,6 +134,10 @@ See [Role Profile Template](references/role_profile_template.md) for the complet
 - Create new folder `role_[role_type_slug]/`
 - Save full JD text as `jd_[company]_[YYYY-MM-DD].md` inside the new folder
 - Follow standard JD analysis process
+- **Update `target_roles/my_data/roles_index.md`:**
+  - Add to "Total roles" count
+  - Add new row to Role Type Fit Matrix (Result = "Not applied yet")
+  - Add to Strategy section (Pursue/Test/Avoid) based on domain fit analysis
 
 ### JD Merging Rules
 
@@ -278,7 +289,7 @@ When analyzing ANY story against a JD requirement:
 
 #### Phase 3: Sequential Gap Filling
 
-**Goal:** Fill remaining gaps (❌ and ⚠️) by going through previous companies in reverse chronological order.
+**Goal:** Fill remaining gaps (❌ and ⚠️) by going through previous companies in reverse chronological order, then project-type stories.
 
 **Process:**
 1. Take the gap list from Primary Coverage Map
@@ -292,7 +303,11 @@ When analyzing ANY story against a JD requirement:
 5. Continue until:
    - All gaps filled, OR
    - All companies checked
-6. **If a company is clearly irrelevant** (completely different industry, role type doesn't match) → ask user: "[Company Y] seems quite different from this role. Should I still check it for relevant stories?"
+6. **Then check project-type stories** (`Type: project`):
+   - These are side projects, consulting gigs, personal projects
+   - Analyze same as employment stories — quote-based evidence, metrics
+   - Note: these go to CV Projects section (optional) or Summary, NOT Experience
+7. **If a company is clearly irrelevant** (completely different industry, role type doesn't match) → ask user: "[Company Y] seems quite different from this role. Should I still check it for relevant stories?"
 
 **Result:** **Extended Coverage Map** — gaps filled where possible, remaining genuine gaps identified.
 
@@ -363,7 +378,113 @@ See [Skills Mapping Template](references/skills_mapping_template.md) for the com
 
 ---
 
+## Part 2.5: Readiness Assessment (Decision Gate)
+
+**Principle:** Skills mapping tells us WHAT evidence we have. Readiness assessment decides WHETHER to apply with that evidence — and if not, what to do about it.
+
+**This is a hard gate.** No CV gets generated until the user explicitly chooses 🟢 Go or 🟡 Go with caveats.
+
+### When Readiness Assessment Runs
+
+**Trigger condition:** Phase 6 of `/map-skills` runs UNLESS coverage is 100% across BOTH Critical AND High priorities. If perfect coverage → skip the assessment, offer `/generate-cv` directly.
+
+**Why skip on full coverage:** No real decision to make. The user has all evidence; the assessment would be theatre.
+
+### Coverage Summary
+
+Calculate:
+- Critical: covered (✅ Strong + ⚠️ Moderate) / total / %
+- High: covered / total / %
+- Medium: covered / total / %
+- Overall: total covered / total requirements / %
+
+### Four Scenarios
+
+| Scenario | Criteria (guidance, not strict) | What it means |
+|----------|----------------------------------|---|
+| 🟢 **Go** | Critical ≥80% Strong, High ≥60% covered | All key requirements have solid evidence — apply now |
+| 🟡 **Go with caveats** | Critical 100% but real gaps in High/Medium | Apply, address gaps in cover letter / interview prep |
+| 🟠 **Wait & strengthen** | Critical gaps are FILLABLE from existing experience | User has the experience, just hasn't documented it. Add stories first. |
+| 🔴 **Not yet** | Critical gaps are STRUCTURAL (no existing experience) | Need new experience, training, or pivot to a different role |
+
+**Be honest in scenario assessment.** If Critical is 50% covered and there's no fillable experience, that's 🔴. Don't soften to 🟠 to be encouraging.
+
+### Consultant Mode: Action Options Per Gap
+
+For each genuine gap (or moderate-coverage Critical/High skill), provide options from this menu:
+
+* **(a) Add achievement** — user likely has the experience, just hasn't documented it
+  - Specify: which company, what to ask, estimated time (1-2 hour conversation typical)
+  - Confidence: 🔴 High (company profile evidence) / 🟡 Medium (role-based) / 🟢 Worth checking (industry pattern)
+* **(b) Training / course** — user genuinely lacks the skill
+  - Recommend specific: platform + course name + duration + cost
+  - Be concrete. "Take a Product Analytics course" is bad. "Reforge: Mastering Product Analytics, 6 weeks, $2K" is good.
+* **(c) Pet-project / practice** — user needs portfolio evidence
+  - Specify: what to build, what skills it demonstrates, realistic time
+  - Example: "Build a Streamlit dashboard analyzing public dataset to demonstrate SQL + product metrics — 2 weekends"
+* **(d) Reframe existing experience** — adjacent story can be re-angled
+  - Specify: which story, what angle, what JD aspect it could match
+* **(e) Accept as gap** — real but not deal-breaking
+  - Justify: priority level, compensating strengths, how to address in cover letter
+
+For each gap, recommend ONE option with reasoning.
+
+### Decision Quiz
+
+Present:
+- Coverage summary table
+- Selected scenario with reasoning
+- Gaps with recommended option per gap
+
+Then ask the user:
+
+> What do you want to do?
+> - 🟢 Generate CV now — apply with current evidence
+> - 🟠 Add N stories first — document existing experience
+> - 🟠 Strengthen specific stories — add metrics, then re-run
+> - 🔴 Take a pause — need training or new experience
+> - 🔄 Pivot to adjacent role — gaps are structural
+> - ❌ Skip this role — not the right fit
+
+### Recording the Decision
+
+Write to `skills_mapping.md` Readiness Assessment section:
+- Coverage Summary (numbers)
+- Scenario + reasoning
+- Gaps Analysis & Action Options (all 5 options + recommended per gap)
+- Recommendations (short-term / medium-term / alternative paths)
+- Decision Record (user's choice + next step)
+
+### Acting on the Decision
+
+| Decision | Next step |
+|----------|-----------|
+| 🟢 Generate CV now | Run `/generate-cv` |
+| 🟠 Add stories first | Run `/add-achievement` per gap, then re-run `/map-skills` |
+| 🟠 Strengthen stories | User finds metrics, re-runs `/map-skills` |
+| 🔴 Take a pause | Save assessment, suggest learning resources, set check-in date |
+| 🔄 Pivot | List existing `role_*` folders, OR run `/analyze-role` for adjacent role |
+| ❌ Skip | Note reasoning, move on |
+
+### Why This Gate Matters
+
+- **Prevents wasted applications:** A CV generated against weak evidence still leads to interview rejection. Better to know upfront.
+- **Surfaces hidden experience:** Many "gaps" are actually undocumented stories. The consultation finds them.
+- **Encourages skill investment:** When training/projects are framed as concrete options (not vague advice), users actually do them.
+- **Respects user agency:** The decision is the user's, not Claude's. The consultation provides options; the user chooses.
+
+---
+
 ## Part 3: CV Generation
+
+**⚠️ Prerequisite:** This part runs ONLY via the `/generate-cv` command, AFTER `/map-skills` has been run AND the user has explicitly chosen 🟢 Go or 🟡 Go with caveats in the Readiness Assessment. Never auto-generate a CV at the end of skills mapping.
+
+**Refusal conditions for CV generation:**
+1. No `skills_mapping.md` exists → tell user to run `/map-skills` first
+2. No Readiness Assessment in skills_mapping.md AND coverage is incomplete → tell user to run `/map-skills`
+3. Readiness scenario is 🔴 Not yet → require explicit user override
+4. User asks for CV without choosing a target role → ask first
+5. Required story files missing → list them, suggest `/add-achievement`
 
 ### CV Strategy
 
@@ -399,10 +520,11 @@ See [CV Template](references/cv_template.md) for the complete CV template.
 
 1. Name + Title + Contact info
 2. Summary paragraph (no heading)
-3. Experience (each company: company line → role → mission → bullets)
-4. Certifications
-5. Education
-6. Skills & Languages
+3. Experience (each company: company line → role → mission → bullets) — **employment stories only**
+4. **Projects (optional)** — only if a project story clearly strengthens the position for THIS role. Project stories (`Type: project`) NEVER go in Experience.
+5. Certifications
+6. Education
+7. Skills & Languages
 
 #### Summary Paragraph
 - NO heading — just a paragraph after contact info
@@ -457,6 +579,18 @@ Each company block has:
 - [ ] Gaps are identified
 - [ ] Tier 1/2/3 stories are clearly prioritized
 
+### Before finalizing readiness assessment (skip if 100% Critical+High coverage):
+
+- [ ] Coverage Summary table includes accurate numbers (covered / total / %)
+- [ ] Selected scenario matches the actual coverage (no softening 🔴 to 🟠 to be encouraging)
+- [ ] Each gap has all 5 action options listed (a/b/c/d/e), not just one
+- [ ] Recommended option per gap is justified with reasoning
+- [ ] Training/course recommendations are SPECIFIC (platform + name + duration), not vague
+- [ ] Pet-project recommendations specify what to build and time investment
+- [ ] Decision was explicitly chosen by the user, not assumed
+- [ ] Decision Record points to the correct next step (run /generate-cv, /add-achievement, etc.)
+- [ ] No CV has been generated as part of /map-skills
+
 ### Before finalizing CV:
 
 - [ ] All bullets follow format: `[Strong verb] [result] due to / by [action]` (result first)
@@ -477,3 +611,5 @@ Each company block has:
 - [ ] **Proofread against BOTH stories AND company documents:** Verify all metrics and facts against both story files AND company profile documents (company profiles may contain details like branch counts, user numbers, etc. that complement stories)
 - [ ] **Currency check:** For international/foreign companies, use appropriate currency (EUR for EU companies, USD for US companies, etc.). Ask user if unsure.
 - [ ] **Logical sense check:** Every phrase in every bullet must make logical sense (e.g., "scaled engagement 117%" is nonsensical if 82→178 is capacity, not engagement; "2.6× growth from zero" is contradictory)
+- [ ] **Story type check:** No project-type story appears in Experience section. Project stories only in optional Projects section or Summary.
+- [ ] **Projects section justification:** If Projects section is included, it's because a project clearly strengthens the position — not just to fill space.

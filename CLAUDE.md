@@ -4,7 +4,7 @@
 
 **🗣️ Communication Style:** Use informal address with the user ("ты" in Russian, informal "you" in English, or equivalent informal address in whatever language we're communicating in).
 
-**Last Updated:** 2026-04 (added bash note for hidden folders)
+**Last Updated:** 2026-05-08 (added cover-letters skill and /write-cl command)
 
 ***
 
@@ -51,13 +51,15 @@ ls -la /path/to/project/.claude/skills/
 * Company profile template in `references/company_template.md`
 * Extraction algorithms
 
-**🎯 Job Analysis & CV Generation** → `.claude/skills/job-analysis/SKILL.md`
+**🎯 Job Analysis, Readiness Assessment & CV Generation** → `.claude/skills/job-analysis/SKILL.md`
 
 * Analyzing job descriptions (JDs)
 * Extracting requirements, keywords, and skills by priority
 * Skills mapping algorithm
+* **Readiness Assessment** with consultant-style gap advice (4 scenarios: 🟢 Go / 🟡 Go with caveats / 🟠 Wait & strengthen / 🔴 Not yet) and 5 action options per gap (add achievement, training, pet-project, reframe, accept)
+* **Decision gate** between skills mapping and CV generation — no auto-generation
 * Three templates in `references/`: role\_profile\_template.md, skills\_mapping\_template.md, cv\_template.md
-* CV generation rules
+* CV generation rules (only after explicit "Go" decision)
 
 **⚡ Company Context** → `.claude/skills/company-context/SKILL.md`
 
@@ -74,6 +76,22 @@ ls -la /path/to/project/.claude/skills/
 * Calculate conversion rates
 * Diff notes: what user changed from generated CV version
 * `applications_index.md` as master tracking file
+
+**✉️ Cover Letters** → `.claude/skills/cover-letters/SKILL.md`
+
+* Writing effective cover letters that differentiate you from other candidates
+* Structure: Intro → Why you're a fit → Motivation → Optional personal hook → Call to action
+* Best practices and anti-patterns (what NOT to do)
+* Template in `references/cl_template.md`
+* Examples of good/bad CLs in `references/cl_examples.md`
+* Integration with CV + JD for personalized, specific cover letters
+
+**🔧 Fix Errors** → `.claude/skills/fix-errors/SKILL.md`
+
+* Find and fix errors across ALL source files when user spots an inaccuracy
+* Propagates fixes from source (stories, companies, indexes) to all derived documents
+* Handles framing errors, metric entity errors, causal attribution, titles, facts
+* Triggers automatically when user says something is wrong or needs correction
 
 ***
 
@@ -108,12 +126,55 @@ ls -la /path/to/project/.claude/skills/
 * Categorizes by priority (critical/high/medium)
 * Creates target role folder with 3 files
 
-**`/map-skills`** — Map achievements to target role + generate CV
+**`/map-skills`** — Map achievements to target role + readiness assessment (3-step pipeline for rate limit protection)
 
-* Deep analysis of each achievement in context of target role
-* Matches achievements to role requirements
-* Generates skills\_mapping.md
-* Generates tailored CV
+* **Step 1 (default):** Primary company deep dive — reads role_profile + primary company + stories, writes Phase 1 of skills_mapping.md (~10 tool calls)
+* **Step 2 (`--reinforce`):** Optional — reads previous companies + project stories, fills gaps + strengthens coverage (~13 tool calls)
+* **Step 3 (`--finalize`):** Tiering + Coverage Map + Readiness Assessment + CV Insights (~3 tool calls)
+* **Auto-advance:** If Step 1 gives 100% Critical+High coverage → offer to skip Step 2
+* **Runs Readiness Assessment** (skipped only when 100% Critical+High coverage)
+* Acts as a consultant: for each gap, presents 5 action options (add achievement / training / pet-project / reframe / accept)
+* **Decision gate**: user explicitly chooses to apply now, add stories first, take a pause, pivot, or skip
+* **Does NOT generate CV** — that's `/generate-cv`'s job
+
+**`/generate-cv`** — Generate tailored CV from skills mapping
+
+* Prerequisite: `/map-skills` has been run AND user chose 🟢 Go or 🟡 Go with caveats
+* Reads tiered stories + role profile + Domain Context
+* Asks for domain (if multiple) and currency
+* Generates CV in cv.md following template strictly
+* Runs proofread against story files AND company profiles
+* Verifies metrics, causal chains, framing alignment, logical sense
+* Refuses to generate CV if no readiness assessment exists or scenario is 🔴 Not yet (without explicit override)
+
+**`/write-cl`** — Write cover letter for specific company
+
+* Prerequisite: `/generate-cv` has been run for the target role
+* Analyzes JD for tone, language, and specific requirements
+* Reviews CV to identify most relevant achievements for this role
+* Researches company to find personalized touchpoints
+* Generates cover letter following effective structure:
+  - Personalized intro (not generic)
+  - 2-3 specific bullets with metric-backed achievements
+  - Genuine motivation based on company research
+  - Optional personal hook
+  - Clear call to action
+* Proofreads for grammar, tone, effectiveness
+* Saves to `applications/app_[company]_[date]/cover_letter.md`
+* Quality checklist: no fluff, specific metrics, company references, human tone
+
+**`/fix`** — Fix error across all files
+
+* User spots an error → skill searches all source + derived files
+* Fixes source files first (stories, companies, indexes)
+* Then fixes generated files (skills mappings, CVs, role profiles)
+* Reports what was fixed and what wasn't (frozen snapshots)
+
+**`/roles-status`** — Quick market response overview
+
+* Reads `target_roles/my_data/roles_index.md`
+* Shows Market Overview, What's Working / Not Working, Positioning, Strategy
+* No need to open the file — just run the command
 
 ***
 
@@ -145,6 +206,7 @@ ls -la /path/to/project/.claude/skills/
 | company-profiles   | `references/company_template.md`                                                      | `companies_i_worked/template_company.md`                                   |
 | job-analysis       | `references/role_profile_template.md`, `skills_mapping_template.md`, `cv_template.md` | `target_roles/template_role/role_profile.md`, `skills_mapping.md`, `cv.md` |
 | company-context    | `references/quick_setup_reference.md`                                                 | N/A (reference guide only)                                                 |
+| cover-letters      | `references/cl_template.md`                                                           | `applications/my_data/template_cover_letter.md`                            |
 
 ***
 
@@ -166,32 +228,74 @@ ls -la /path/to/project/.claude/skills/
 
 ***
 
-## ⚠️ CRITICAL: Chronological Story Numbering
+## ⚠️ CRITICAL: Chronological Story Numbering (Company-First)
 
-**ALL achievements MUST be numbered chronologically by start date, NOT by creation order.**
+**ALL achievements MUST be numbered chronologically, with PRIORITY given to grouping stories by company.**
+
+**Rule: Company grouping takes priority over strict chronological order.**
+
+When a user worked at Company A (e.g., 2020-2022) and Company B (e.g., 2021-2023), ALL stories from Company A come before ALL stories from Company B, even if their dates overlap. Within each company, stories are ordered chronologically by start date.
+
+**Project-type stories** (`Type: project`) are numbered AFTER all employment stories. They don't participate in company-first grouping.
 
 **When creating a new achievement:**
 
-1. Extract `dates:` field from ALL existing story files
-2. Sort ALL stories (existing + new) by start date chronologically
-3. Assign sequential numbers: story\_01, story\_02, story\_03...
-4. **If new story belongs in the middle:**
-   * Rename ALL subsequent files (e.g., story\_03 → story\_04, story\_04 → story\_05...)
-   * Update ALL references in: stories\_index.md, company files, companies\_index.md
-   * Then create the new file with correct number
+1. **If `Type: employment`:**
+   1. Identify which COMPANY the new story belongs to
+   2. Find the position of that company's story block (all stories for that company should be contiguous)
+   3. Within the company block, sort by start date chronologically
+   4. Place the new story in the correct position within its company block
+   5. **If renumbering is needed:**
+      * Renumber ALL stories after the insertion point (e.g., story\_03 → story\_04, story\_04 → story\_05...)
+      * Update ALL references in: stories\_index.md, company files, companies\_index.md
+      * Then create the new file with correct number
+2. **If `Type: project`:**
+   * Place AFTER all employment stories
+   * Number chronologically within the projects section
+   * No company profile to update
 
 **Example:**
 
-* Existing: story\_01 (2015), story\_02 (2019), story\_03 (2020)
-* New story from 2017
-* **Correct:** New becomes story\_02, old story\_02 → story\_03, old story\_03 → story\_04
-* **Wrong:** New becomes story\_04 (breaks chronological order)
+* Existing: story\_01 (Company X, 2015), story\_02 (Company X, 2019), story\_03 (Company Y, 2020), story\_04 (Company Y, 2022)
+* New story from Company X, dated 2020 (overlaps with Company Y)
+* **Correct:** New becomes story\_03 (end of Company X block), old story\_03 → story\_04, old story\_04 → story\_05
+* **Wrong:** New becomes story\_05 (breaks company grouping)
 
 **Why this matters:**
 
-* Shows evolution of skills over time
-* Creates logical reading sequence
-* CV generation assumes chronological order
+* Keeps each company's stories together for readability
+* Within each company, shows evolution of skills over time
+* CV generation assumes stories are grouped by company
+* Avoids confusing interleaving of stories from different companies
+
+***
+
+## ⚠️ Story Types: Employment vs Project
+
+Every story has a `**Type:**` field that determines how it flows through the system:
+
+### `employment` (default)
+* Work at a company as an employee or long-term contractor
+* Gets a company profile in `companies_i_worked/`
+* Appears in CV **Experience** section
+* Numbered with company-first chronological grouping
+* Link to company profile: `**See also:** [[company_slug]]`
+
+### `project`
+* Side project, consulting gig, personal project, volunteer work
+* **No company profile** — all context lives in the story itself
+* In CV: may appear in optional **Projects** section or **Summary**, never in Experience
+* Numbered after all employment stories
+* No `**See also:**` link to company profile
+
+### How Type affects workflows:
+
+* **Company profiles** → built from employment stories only
+* **Skills mapping** → analyzes ALL stories (both types) for coverage
+* **CV Experience** → employment stories only
+* **CV Projects** → optional section, only if a project clearly strengthens the position
+* **Stories index** → separate "Projects" section for project-type stories
+* **Companies index** → employment only, no project stories referenced
 
 ***
 
@@ -206,7 +310,8 @@ Before finalizing any document:
 * [ ] Complete STARR (all 5 sections)
 * [ ] Reflection included (learning + what you'd change)
 * [ ] No skills/keywords extracted (that's per-target-role)
-* [ ] Linked to related companies
+* [ ] Linked to related companies *(employment only — project stories don't link to companies)*
+* [ ] Type field present (`employment` or `project`)
 
 **Company Profiles:**
 
@@ -224,13 +329,24 @@ Before finalizing any document:
 * [ ] Skills mapping includes quote-based evidence
 * [ ] Skills mapping includes domain-specific tiering (if multiple domains exist)
 * [ ] Missing experience suggestions provided (company profile mining, role-based, industry patterns)
+* [ ] **Readiness Assessment ran** (unless 100% Critical+High coverage — then skipped intentionally)
+* [ ] **Readiness scenario chosen honestly** — no softening 🔴 to 🟠 to be encouraging
+* [ ] **5 action options listed per gap** (add achievement / training / pet-project / reframe / accept)
+* [ ] **Training recommendations are specific** (platform + course name + duration), not vague
+* [ ] **User's decision recorded** in skills_mapping.md (not assumed)
+* [ ] **CV NOT generated** unless user explicitly chose 🟢 Go or 🟡 Go with caveats
 * [ ] CV bullets all have metrics
 * [ ] CV follows template format (result-first bullets, mission line, etc.)
 * [ ] CV uses domain-specific framing and vocabulary from Domain Context
 * [ ] CV proofread against BOTH story files AND company profile documents
+* [ ] **Causal verification:** Each CV bullet's action DIRECTLY caused the claimed result (verify in source story — don't mix outcomes from different sub-actions)
+* [ ] **Metric entity verification:** Every number specifies WHO it refers to (company employees, client employees, end-users, students, customers)
+* [ ] **Framing alignment:** CV language matches the framing in source stories/company profiles (not overriding it with different vocabulary)
 * [ ] Currency matches target company context (EUR for EU, USD for US)
 * [ ] Every phrase makes logical sense (no contradictions)
 * [ ] Can speak to every bullet in interview
+* [ ] **Story type check:** No project-type story appears in Experience section. Project stories only in optional Projects section or Summary.
+* [ ] **Projects section justification:** If included, a project clearly strengthens the position — not just to fill space
 
 **General:**
 
@@ -241,8 +357,12 @@ Before finalizing any document:
 **Applications:**
 
 * [ ] CV snapshot saved to `applications/my_data/app_[company]_[date]/cv_sent.md`
+* [ ] Cover letter saved to `applications/my_data/app_[company]_[date]/cover_letter.md` (if needed)
+* [ ] Cover letter follows effective structure (personalized, specific, company-focused)
+* [ ] Cover letter quality checked: no fluff, specific metrics, at least one company reference
 * [ ] Diff notes included (what changed from role version)
 * [ ] `applications_index.md` updated with new entry
+* [ ] `roles_index.md` updated (Role Type Fit Matrix, Market Signals, Strategy)
 * [ ] Conversion funnel counts recalculated
 
 ***
@@ -258,15 +378,27 @@ Before finalizing any document:
 ### Workflow 2: Applying for a Role
 
 1. **`/analyze-role`** → Analyze JD, create role folder OR merge into existing role
-2. **`/map-skills`** → Map achievements to role requirements + suggest missing experience
-3. Review generated CV in target role folder
-4. When new JD for same role arrives → **`/analyze-role` merges it** → re-run `/map-skills` → CV gets refined
+2. **`/map-skills`** → Map achievements to role requirements, suggest missing experience, run **Readiness Assessment**
+3. **Decision point** (consultation in `/map-skills`):
+   - 🟢 Go → proceed to step 4
+   - 🟡 Go with caveats → proceed to step 4 (note caveats for cover letter)
+   - 🟠 Wait & strengthen → run `/add-achievement` for fillable gaps, then back to step 2
+   - 🔴 Not yet → take a pause for training / pet-projects, return later
+   - 🔄 Pivot → check existing roles or run `/analyze-role` for adjacent role
+   - ❌ Skip → not the right fit
+4. **`/generate-cv`** → Generate tailored CV (only after explicit Go decision)
+5. Review generated CV in target role folder
+6. **`/write-cl`** → Write cover letter for specific company (when ready to apply)
+7. When new JD for same role arrives → **`/analyze-role` merges it** → re-run `/map-skills` (re-assess readiness) → if Go, re-run `/generate-cv`
 
 ### Key Relationships
 
 * **Achievements → Company profiles:** Profiles extract FROM achievements
 * **Achievements → Skills mapping:** Different skills extracted for different roles
-* **Skills mapping → CV:** CV generated from Tier 1/2 achievements
+* **Skills mapping → Readiness Assessment:** Coverage data drives the 4 scenarios
+* **Readiness Assessment → CV Generation:** Hard gate — only 🟢/🟡 unlocks `/generate-cv`
+* **Skills mapping → CV:** CV generated from Tier 1/2 achievements (via `/generate-cv`)
+* **CV + JD + Company research → Cover Letter:** CL tailored to specific company using CV content, JD requirements, and company-specific touchpoints
 * **Company context → Achievement gathering:** Enables smart questions
 * **Company profiles → Experience suggestions:** Profiles reveal undocumented experience for gap filling
 * **Multiple JDs → Role refinement:** Each new JD refines requirements, keywords, and CV
@@ -443,12 +575,13 @@ starry/
     │   ├── skills_mapping.md
     │   └── cv.md
     └── my_data/
-        └── role_[role_type]/    # e.g., role_design_ops/
-            ├── role_profile.md  # JD History + merged requirements
-            ├── skills_mapping.md
-            ├── cv.md
-            ├── jd_company1_2026-04-30.md  # Full original JDs
-            └── jd_company2_2026-05-15.md  # Added with each new JD
+    ├── roles_index.md          # Market response analysis by role type
+    └── role_[role_type]/       # e.g., role_design_ops/
+        ├── role_profile.md     # JD History + merged requirements
+        ├── skills_mapping.md
+        ├── cv.md
+        ├── jd_company1_2026-04-30.md  # Full original JDs
+        └── jd_company2_2026-05-15.md  # Added with each new JD
 ├── applications/                # CV snapshots sent to companies
 │   ├── README.md
 │   └── my_data/
@@ -466,7 +599,7 @@ starry/
 1. **Quick setup first:** Run `/quick-setup` to collect company context
 2. **Add achievements:** Run `/add-achievement` for each major achievement
 3. **Refine companies:** Run `/add-company` to build company profiles from achievements
-4. **Apply for roles:** Run `/analyze-role` → `/map-skills` to generate tailored CVs. Each new JD for the same role type refines the requirements and improves your CV.
+4. **Apply for roles:** Run `/analyze-role` → `/map-skills` (assesses readiness, advises on gaps) → `/generate-cv` (only after you decide to apply). Each new JD for the same role type refines the requirements and improves your CV.
 
 ***
 

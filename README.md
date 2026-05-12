@@ -58,6 +58,30 @@ starry/
 
 Achievements and companies are permanent — your history. Target roles are dynamic — built from market analysis. CVs are generated per role.
 
+## Tracking Your Applications
+
+Two complementary systems track your job search progress:
+
+**`applications/` — Application tracking**
+- Tracks every job/volunteer application with CV snapshots
+- `applications_index.md` — master list with conversion funnel
+- One folder per application: `app_[company]_[date]/`
+- Tracks status: Sent → Replied → Screening → Interview → Offer → Accepted
+- Reply predictions and outcome tracking
+
+**`target_roles/my_data/roles_index.md` — Market response analysis**
+- Tracks which role types generate the most employer interest
+- Reply rates by role type (Project Manager, Specialist, Manager)
+- Channel performance (personal referrals vs company website vs referral links)
+- Top performing roles vs low performers
+- Data-driven recommendations on which roles to prioritize
+
+**When they update:**
+- `roles_index.md` — when you create a new role, submit an application, or receive a response
+- `applications_index.md` — when you submit applications or receive status updates
+
+Both systems work together to give you a complete view of your job search performance.
+
 ## Keep it private
 
 This repo is a template. Your career data belongs in a private fork:

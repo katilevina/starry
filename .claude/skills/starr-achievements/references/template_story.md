@@ -15,10 +15,15 @@ When updating this template, also update the file in the achievements folder.
 ### \[Title]
 
 **When:** \[Period]
-**Company:** \[Company Name]
+**Type:** employment *(or: project)*
+**Company:** \[Company Name] *(for project type: project/client name)*
 **Context:** \[Your role and 1-2 sentence summary of what happened]
 
-**See also:** \[\[company\_\[slug]]]
+**See also:** \[\[company\_\[slug]]] *(only for employment type — project stories don't have company profiles)*
+
+**Type rules:**
+* `employment` — default. Work at a company as an employee or long-term contractor. Gets a company profile, appears in CV Experience section.
+* `project` — side project, consulting gig, personal project, volunteer work. No company profile. In CV: may appear in optional Projects section or Summary, never in Experience.
 
 ***
 

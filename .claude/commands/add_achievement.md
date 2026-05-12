@@ -28,6 +28,11 @@
    * Get brief 1-sentence summary
    * Ask which role/title at this company
    * Dates/period
+   * **Determine story type:**
+     * Default: `employment` (employee or long-term contractor at a company)
+     * `project` if: side project, consulting gig, personal project, volunteer work
+     * Project stories don't get company profiles, don't go in CV Experience, and are numbered after all employment stories
+     * Ask: "Is this a work achievement at a company, or a side project / consulting gig?" if unclear
 3. **Guide through STARR structure with CONTEXT-AWARE questions:**
    * For each section (S-T-A-R-R), ask specific questions
    * **Use company context to be specific:**
@@ -50,18 +55,24 @@
    * Identify soft skills (leadership, communication)
    * Ask user to confirm/add more
 6. **Create the file**:
-   * **Determine chronological number:**
-     * Extract the `dates:` field from ALL existing story files in `achievements/my_data/`
-     * Sort ALL stories (existing + new) by start date chronologically
-     * Assign the correct position number to the new story
-     * **IMPORTANT:** If the new story belongs in the middle of the sequence, you MUST:
-       1. Rename ALL subsequent story files (e.g., story\_03 → story\_04, story\_04 → story\_05, etc.)
-       2. Update ALL cross-references in stories\_index.md, company files, and companies\_index.md
-       3. Then create the new file with the correct number
-     * Example: If story\_01 (2015), story\_02 (2016), story\_03 (2019) exist, and new story is from 2017:
-       * New story becomes story\_03
-       * Old story\_03 becomes story\_04
-       * Update all references
+   * **Determine story number (Company-First ordering):**
+     * **If Type is `employment`:**
+       * Identify which COMPANY the new story belongs to
+       * Find the position of that company's story block (all stories for that company should be contiguous)
+       * Within the company block, sort by start date chronologically
+       * Place the new story in the correct position within its company block
+       * **IMPORTANT:** If renumbering is needed:
+         1. Renumber ALL stories after the insertion point (e.g., story\_03 → story\_04, story\_04 → story\_05, etc.)
+         2. Update ALL cross-references in stories\_index.md, company files, and companies\_index.md
+         3. Then create the new file with the correct number
+       * Example: story\_01-02 (Company X), story\_03-04 (Company Y). New story from Company X dated after story\_02:
+         * New story becomes story\_03 (end of Company X block)
+         * Old story\_03 becomes story\_04, old story\_04 becomes story\_05
+         * Update all references
+     * **If Type is `project`:**
+       * Place AFTER all employment stories (no company-first grouping)
+       * Number chronologically within the projects section
+       * No company profile to update
    * Use template: `achievements/my_data/story_[number]_[slug].md` (e.g., `story_05_knowledge_capture.md`)
    * **Template source:**
      * If user has skills enabled → use template from this skill file (see "Achievement Template" section below)
@@ -232,11 +243,11 @@ Here's your achievement. Any edits needed, or shall I save it?
 
 ## Tips for Me
 
-* **⚠️ CHRONOLOGICAL NUMBERING IS CRITICAL:**
-  * **ALWAYS check dates BEFORE creating file** — Extract `dates:` from ALL existing stories, sort chronologically, determine correct position
-  * **If new story belongs in middle:** Rename ALL subsequent files + update ALL references (stories\_index.md, company files, companies\_index.md)
-  * **Wrong example:** story\_01 (2015), story\_02 (2019), story\_03 (2020). New story from 2016 → becomes story\_02, NOT story\_04
-  * **Right approach:** Sort ALL stories by date first, then number sequentially
+* **⚠️ COMPANY-FIRST NUMBERING IS CRITICAL:**
+  * **ALWAYS check company + dates BEFORE creating file** — Group by company first, then sort within each company by start date
+  * **Company grouping takes priority over strict chronology** — ALL stories from Company A come before ALL stories from Company B
+  * **If renumbering is needed:** Rename ALL subsequent files + update ALL references (stories\_index.md, company files, companies\_index.md)
+  * **Example:** story\_01-04 (Company X), story\_05-08 (Company Y). New story from Company X → becomes story\_05, old story\_05-08 → story\_06-09
 * **Be persistent about metrics** — don't accept "it improved" without a number
 * **Keep user focused on THEIR actions** — not what "we" did
 * **Probe deeply in Reflection** — this is where growth mindset shows
@@ -271,10 +282,11 @@ When updating this template, also update the file in the achievements folder.
 ### [Title]
 
 **When:** [Period]
-**Company:** [Company Name]
+**Type:** employment *(or: project)*
+**Company:** [Company Name] *(for project type: project/client name)*
 **Context:** [Your role and 1-2 sentence summary of what happened]
 
-**See also:** [[company_[slug]]]
+**See also:** [[company_[slug]]] *(only for employment type — project stories don't have company profiles)*
 
 ***
 

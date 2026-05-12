@@ -1,322 +1,183 @@
-# Map Achievements to Target Role & Generate CV
+# Map Achievements to Target Role & Assess Readiness
 
-**Goal:** Match your STAR achievements to target role requirements and generate a tailored CV, using a waterfall approach: primary company first → fill gaps → strengthen → generate.
+**Goal:** Match STAR achievements to target role requirements, assess readiness, decide whether to apply.
+
+**⚠️ This command does NOT generate a CV.** That happens in `/generate-cv` AFTER you decide to apply.
+
+**⚠️ RATE LIMIT PROTECTION:** This command runs in up to 3 steps to avoid API 429 errors. Each step stays under ~12 tool calls. Steps run in the SAME conversation turn when possible; move to a new turn if you get a 429 error.
 
 ---
 
-## Instructions for Me (Claude)
+## How It Works: 3-Step Pipeline
 
-### Pre-Work: Understand the Target Role
+| Step | Flag | What it reads | What it writes | ~Tool calls |
+|------|------|---------------|----------------|-------------|
+| 1 | `/map-skills` (default) | role_profile + primary company profile + stories_index + primary stories (~7) | Phase 1 of skills_mapping.md | ~10 |
+| 2 | `/map-skills --reinforce` | Previous company profiles + stories + project stories | Phase 2-3 of skills_mapping.md | ~13 |
+| 3 | `/map-skills --finalize` | Current skills_mapping.md + role_profile.md only | Tiering + Coverage Map + Readiness + CV Insights | ~3 |
 
-1. **Identify the target role**:
-   - Ask user which target role folder to work with
-   - List all folders in `target_roles/my_data/`
-   - Read `role_profile.md` to understand merged requirements
-   - **Read Domain Context section** from role_profile.md — this influences story selection, tiering, and framing
-   - **Read ALL JD files** (`jd_*.md`) in the role folder — the full original JD texts, not summaries
-   - Read `skills_mapping.md` (if exists — previous mapping to build on)
+**Auto-advance rules:**
+- If Step 1 gives 100% Critical + High coverage → offer to skip Step 2 and go to Step 3
+- If user says "заново" or "полный маппинг" → run all 3 steps
+- If any step gets 429 → tell user to run next step in a new message
 
-2. **Identify primary company** (Phase 1):
-   - Scan all company profiles in `companies_i_worked/my_data/`
-   - Determine which company best matches this role:
-     - Default: most recent company
-     - Override: if a previous company matches domain/industry/role type significantly better
-   - Ask user to confirm: "I think [Company X] is the best primary match for this role because [reason]. Agree?"
+---
 
-### Phase 2: Primary Company Deep Dive
+## Step 1: Primary Company Deep Dive (`/map-skills`)
 
-3. **Read primary company profile FIRST**:
-   - Read the primary company profile file
-   - Build context map: tools, stakeholders, culture, responsibilities, team structure
-   - Identify experience from profile that may not have dedicated stories (e.g., NPS work, procurement)
+### Pre-Work
 
-4. **Read primary company stories**:
-   - Read stories_index for overview
-   - Read ALL stories from the primary company → full STAR narratives
-   - ⚠️ **NEVER use stories_index summaries as source for CV bullet content**
+1. **Identify target role:**
+   - If argument specifies role → use that
+   - Otherwise list folders in `target_roles/my_data/` and ask user
+   - Read `role_profile.md` for merged requirements + Domain Context
 
-5. **Map ALL JD requirements against primary company**:
-   For each JD requirement (Critical → High → Medium):
-   - Find matching stories from the primary company
+2. **Identify primary company:**
+   - Default: most recent company
+   - Override: if a previous company matches JD domain/industry significantly better
+   - Confirm with user
+
+### Execution
+
+3. **Read files** (batch in parallel where possible):
+   - `role_profile.md` from target role folder
+   - Primary company profile from `companies_i_worked/my_data/`
+   - `stories_index.md` for navigation
+   - ALL stories from primary company (full STAR narratives)
+   - ⚠️ **NEVER use stories_index summaries as analysis source**
+
+4. **Map ALL JD requirements** against primary company stories:
+   - For each skill (Critical → High → Medium): find matching stories
    - Extract quote-based evidence from FULL narratives
-   - Rate coverage: ✅ Strong / ⚠️ Moderate / ❌ Gap
-   - Check company profile for undocumented experience that could fill gaps
+   - Rate coverage: ✅✅✅ Strong / ✅✅ Good / ✅ Adequate / ❌ Gap
 
-6. **Build Primary Coverage Map**:
-   - Create a table: Skill | Priority | Status | Best Story | Notes
-   - Highlight gaps (❌ and ⚠️) that need filling from other companies
+5. **Write Phase 1** to `skills_mapping.md`:
+   - Header + Coverage Summary (partial)
+   - Phase 1: Primary Company Coverage (all skills mapped with quotes + evidence)
 
-### Phase 3: Sequential Gap Filling
-
-7. **Go through previous companies in reverse chronological order**:
-
-   For each previous company:
-   a. Read company profile → understand context
-   b. Read ALL stories from this company → full STAR narratives
-   c. For each remaining gap, check if any story covers it
-   d. Also check company profile for undocumented experience
-   e. Update coverage for newly filled gaps
-   f. Move to next company → repeat
-
-   **Continue until:** all gaps filled OR all companies checked
-
-   **If a company is clearly irrelevant** → ask user: "[Company Y] seems quite different from this role. Should I still check it for relevant stories?"
-
-8. **Identify remaining genuine gaps** — skills with no evidence from any company
-
-### Phase 4: Strengthening by Priority
-
-9. **Strengthen Critical skills**:
-   For each Critical skill already covered by primary company:
-   - Search ALL other companies for additional/complementary stories
-   - If found → add to coverage (primary story stays primary; additional provides depth)
-   - This gives options: different story for each company's CV section
-
-10. **Strengthen High skills**: Same process across all companies
-
-11. **Strengthen Medium skills**: Same, but only if compelling stories exist
-
-12. **Skip companies with no relevant stories** — ask user if unsure
-
-### Phase 5: Final Tiering & Output
-
-13. **Assign stories to tiers**:
-    - **Tier 1:** Primary company stories for Critical/High skills + dramatically stronger stories from other companies
-    - **Tier 2:** Strengthening stories, gap-filling stories, Medium skill stories
-    - **Tier 3:** Nice-to-have, less relevant stories
-    - Verify: Primary company has the most Tier 1 stories
-
-14. **Fill skills_mapping.md** using template:
-    - Phase 1: Primary Company Coverage (all skills mapped)
-    - Phase 2: Gap Filling from Previous Companies (per company)
-    - Phase 3: Strengthening by Priority (Critical → High → Medium)
-    - Final Coverage Map
-    - Story Recommendations with tiering
-    - **Create Domain-Specific Adjustments** for each domain in the role_profile's Domain Context
-    - Remaining Gaps
-    - Go/no-go recommendation
-
-15. **Suggest missing experience** (proactive gap filling):
-
-    For every remaining gap and moderate coverage skill, check if the user might have undocumented experience:
-
-    **a. Company profile mining:**
-    - Look at company profiles for relevant experience not in stories
-    - Example: "JD asks for NPS experience. Your profile at Company X mentions 'NPS program'. Did you work on this?"
-
-    **b. Role-based inference:**
-    - Based on user's job title and level, what would they typically have done?
-    - Example: "As a Senior PM, you likely did roadmap prioritization. Do you have a story?"
-
-    **c. Industry pattern matching:**
-    - Skills common in the user's industry that match JD requirements
-    - Example: "You worked in SaaS and JD asks for churn reduction. Did you work on retention?"
-
-    **Present suggestions grouped by confidence:**
-    - 🔴 **High confidence** (company profile evidence)
-    - 🟡 **Medium confidence** (role-based)
-    - 🟢 **Worth checking** (industry pattern)
-
-    **Always ask questions, don't assume. If user confirms → suggest `/add-achievement` to create the story, then re-run mapping.**
-
-### CV Generation
-
-16. **Generate CV in cv.md**:
-    - **If role_profile has Domain Context with multiple domains** → ask user which domain to target
-    - **If only one domain** → use that domain's tiering and framing automatically
-    - Use domain-specific tiering from skills_mapping.md (not general tiering)
-    - Apply domain-specific framing from Domain Context
-    - Write professional summary using Tier 1 achievements (domain-framed)
-    - Create work experience bullets from Tier 1 and Tier 2 (domain-framed)
-    - **Primary company gets the most bullets (3-4)**, other companies: 2-3, earlier: 1-2
-    - Emphasize target role's priority keywords + domain-specific keywords
-    - Include all metrics from achievements
-    - Mirror action verbs from JD
-    - **Ask about currency** if target company is international (EUR for EU, USD for US)
-    - **Run automatic proofread** against BOTH story files AND company profile documents:
-      - Verify every metric against source documents
-      - Check every phrase makes logical sense
-      - Ensure no contradictions
-      - Flag any facts that come from company profile but NOT from story file
-
-17. **Show outputs and confirm**:
-    - Present skills mapping summary (per phase)
-    - Show CV preview
-    - Ask if user wants edits
-    - Flag any critical gaps
+6. **Report to user:**
+   - Show coverage table: Skill | Priority | Status | Best Story
+   - If 100% Critical + High → say "Primary company covers everything! You can skip reinforcement. Run `/map-skills --finalize` to complete."
+   - If gaps → say "Found N gaps. Run `/map-skills --reinforce` to check previous companies, or `/map-skills --finalize` to proceed with current coverage."
 
 ---
 
-## Quiz Questions to Start
+## Step 2: Reinforcement (`/map-skills --reinforce`)
 
-1. **Which target role do you want to map achievements to?**
-   - Type: single choice
-   - Options: List all folders in `target_roles/my_data/` directory
+### When to Run
+- Primary coverage has gaps (❌ or ⚠️)
+- OR user wants full career narrative depth (8+ years across companies)
+
+### Execution
+
+1. **Read files** (batch in parallel):
+   - Previous company profiles (all in `companies_i_worked/my_data/`)
+   - ALL stories from previous companies (full STAR narratives)
+   - Project-type stories (`Type: project`)
+   - Current `skills_mapping.md` (to know which gaps to fill)
+
+2. **Gap filling** (reverse chronological):
+   - For each previous company: check stories against remaining gaps
+   - For project stories: check against gaps (note: projects go to CV Projects section only)
+   - If a company is clearly irrelevant → ask user before reading
+
+3. **Strengthening by priority**:
+   - For Critical skills: find additional stories from other companies
+   - For High skills: same
+   - For Medium: only if compelling stories exist
+
+4. **Write Phase 2-3** to `skills_mapping.md` (append/overwrite):
+   - Phase 2: Gap Filling from Previous Companies
+   - Phase 3: Reinforcement (per company, which skills they reinforce)
+
+5. **Report to user:**
+   - What gaps were filled, what remains
+   - Suggest `/map-skills --finalize` to complete
 
 ---
 
-## Example Conversation Flow
+## Step 3: Finalize (`/map-skills --finalize`)
 
-**User:** /map-skills
+### When to Run
+- Always the LAST step — after Step 1 (and optionally Step 2)
+- This step NEVER reads story files — only works with data already in skills_mapping.md
 
-**Claude:**
-Let's map your achievements to a target role and generate a CV.
+### Execution
 
-**[Quiz: Which target role?]**
+1. **Read files** (minimal — just 2):
+   - Current `skills_mapping.md` (contains all coverage data)
+   - `role_profile.md` (for Domain Context)
 
-**Claude:**
-I'll analyze the **[Role Title]** target role.
+2. **Compute final outputs** (no file reads needed):
+   - Final Coverage Map (table with all companies)
+   - Story Tiering (Tier 1/2/3 based on coverage)
+   - Domain-Specific Adjustments (from role_profile Domain Context)
+   - Remaining Gaps
+   - Suggested Experience to Document (check company profiles from context if available)
+   - CV Insights (value prop, differentiators, keywords, framing)
 
-First, let me identify the best primary company for this role. Based on the JD domain ([domain]) and your work history, I think **[Company X]** is the best primary match because [reason]. Agree?
+   **⚠️ Career Narrative Rule:**
+   - ALL relevant companies MUST appear in the CV to show total years of experience, career progression, and breadth
+   - Bullet count decreases by recency (3-4 primary, 2-3 previous, 1-2 earlier)
+   - **Non-relevant early experience CAN be dropped** if your relevant experience already meets or exceeds the JD's years-of-experience requirement (e.g., JD asks for 5 years and you have 6+). The CV is not an autobiography.
+   - **BUT never drop a company in the middle** — this creates an unexplained gap. Either show the full chain or cut from the beginning
+   - Only exception to middle-dropping: user explicitly requests it
 
-**[User confirms or adjusts]**
+3. **Readiness Assessment:**
+   - ⚠️ **SKIP full assessment if 100% Critical + High coverage** → just write 🟢 GO
+   - Otherwise:
+     - Calculate coverage summary (Critical %, High %, Medium %)
+     - Determine scenario: 🟢 Go / 🟡 Go with caveats / 🟠 Wait / 🔴 Not yet
+     - For each gap: present 5 action options (add achievement / training / pet-project / reframe / accept)
+     - Ask user for decision
+     - Record decision in skills_mapping.md
 
-**Claude:**
-Analyzing **[Company X]** (primary) against all JD requirements...
+4. **Write final sections** to `skills_mapping.md` (single Write):
+   - All computed sections above
+   - Readiness Assessment (if needed)
 
-**[Reads company profile, then all stories from primary company]**
-
-**Claude:**
-Here's the primary coverage:
-
-| Skill | Priority | Status | Best Story |
-|-------|----------|--------|------------|
-| Skill 1 | Critical | ✅ Strong | story_1 |
-| Skill 2 | Critical | ✅ Strong | story_3 |
-| Skill 3 | Critical | ⚠️ Moderate | story_2 |
-| Skill 4 | High | ❌ Gap | - |
-
-Gaps to fill: Skill 3 (weak), Skill 4 (none). Let me check your previous companies...
-
-**[Reads Company Y profile + stories, then Company Z...]**
-
-**Claude:**
-Gap filling results:
-- Skill 4 → filled by story_7 from [Company Y]
-- Skill 3 → no stronger story found
-
-Now strengthening Critical/High skills with additional stories from other companies...
-
-**[Phase 4 analysis]**
-
-**Claude:**
-Full coverage map ready. Tiering:
-
-**Tier 1:** story_1, story_3 (primary company)
-**Tier 2:** story_7 (gap fill), story_5 (strengthening)
-**Tier 3:** story_4
-
-**Recommendation:** ✅ Apply
-
-**[User responds]**
-
-**Claude:**
-I've updated `skills_mapping.md` with full analysis. Now generating your CV...
-
-**[Generates CV based on tiered stories]**
-
-**Claude:**
-Your CV is ready! Here's a preview:
-
-**[Shows CV preview]**
+5. **Report to user + suggest next step:**
+   - 🟢 → suggest `/generate-cv`
+   - 🟠 → suggest `/add-achievement` for fillable gaps
+   - 🔴 → suggest training/pause
+   - 🔄 → suggest pivot to adjacent role
 
 ---
 
 ## Tips for Me
 
-- **Waterfall, not parallel** — don't read all companies at once. Read per-phase, per-company.
-- **Read company profile FIRST for each company** — always, before stories. Profile provides context.
-- **Be thorough** — read ALL story files (FULL narrative), not just summaries
-- **Match keywords** — use exact JD phrases in achievements for ATS optimization
-- **Prioritize metrics** — achievements with numbers beat achievements without
-- **Flag gaps clearly** — don't hide missing skills
-- **Be honest about go/no-go** — if critical skills are missing, recommend skipping
-- **Mirror JD language** — use their words in the CV (ATS matching)
-- **Every bullet needs a number** — if a story lacks metrics, flag it
-- **Facts only** — never add info not in the story file. No inferences, no mixing sources.
-- **Verify story-company mapping** — for each CV bullet, check that the story belongs to the company section where it's placed
-- **Use stories_index for NAVIGATION only** — never as source for bullet content
-- **Suggest missing experience proactively** — for every gap, check company profiles, role patterns, and industry patterns before concluding it's a genuine gap
-- **Ask, don't assume** — always phrase suggestions as questions: "Did you do X?" not "You did X"
-- **Use Domain Context** — when role_profile has Domain Context, use it to frame stories and select tiering
-- **Proofread against BOTH stories AND company documents** — company profiles contain details that complement stories
-- **Check currency** — for international companies, ask what currency to use
-- **Check logical sense** — every phrase must make logical sense
-- **Primary company dominance** — primary company should have the most Tier 1 stories and the most CV bullets
+- **Read in parallel** — batch multiple Read calls in one message to reduce API round-trips
+- **Read company profile FIRST** for each company — always before stories
+- **Be thorough with stories** — read FULL narratives, not just summaries
+- **Quote-based evidence** — extract specific quotes, explain connection to skill
+- **Rate honestly** — if Critical skills are missing, recommend 🔴 Not yet
+- **Ask, don't assume** — "Did you do X?" not "You did X"
+- **Use Domain Context** from role_profile for tiering and framing
+- **NEVER auto-generate CV** — readiness gate is hard
+- **Skip full Readiness Assessment if 100% Critical + High** — just write 🟢 GO
+- **Protect against 429** — if approaching ~12 tool calls in a step, stop and tell user to continue in a new message
 
 ---
 
-## Mapping Algorithm (within each phase)
+## Mapping Algorithm
 
 For each skill being analyzed:
 
-1. **Deep story analysis** — Read the FULL STAR narrative:
-   - What did you actually DO in this story?
-   - How do those actions demonstrate this skill?
-   - What metrics prove the impact?
-
-2. **Quote-based evidence:**
-   - Extract specific quotes from the story
-   - Explain the connection: "This demonstrates [skill] because..."
-
-3. **Rate coverage:**
-   - **Strong:** Story has clear action + metrics directly showing skill
-   - **Moderate:** Story implies skill or has weak metrics
-   - **Gap:** No story demonstrates this skill
-
-4. **One story → multiple skills:**
-   - A single story can demonstrate multiple skills
-   - Extract different aspects for different skills
-   - Same story may cover "data analysis" for one target role, "process improvement" for another
-
-5. **Multi-story skills:**
-   - When a skill is covered by stories from multiple companies, note ALL
-   - This allows placing the best story in each company's CV section
-   - Don't duplicate the same story across company sections
-
----
-
-## CV Generation Rules
-
-**Follow the template from `target_roles/template_role/cv.md` (or `references/cv_template.md`) exactly.**
-
-1. **Summary Paragraph (no heading):**
-   - Format: `[Role Title]` + `years of experience` + `key skills/areas` + `key results with metrics` + `your value/superpower` + `motivation if applicable`
-   - 2-3 sentences max
-   - **Prioritize achievements from the primary company**
-
-2. **Work Experience Structure (per company):**
-   Each company block has:
-   - **Company line:** `Company Name, one-line company description` → tab → `City, Country`
-   - **Role line:** `Role title` → tab → `Month 20XX – now`
-   - **Mission line:** `Summary or mission: [Strong verb] [team/project] [product] [result in numbers]`
-   - **Bullets:** 3-4 for primary company, 2-3 for others, 1-2 for earlier
-
-3. **Bullet Format (CRITICAL):**
-   - **Format:** `[Strong verb] [result] due to / by [action]`
-   - **Result goes FIRST** — then how you achieved it
-   - Every bullet MUST have a number/metric
-   - Use strong verbs from JD (Led, Built, Grew, Reduced, Launched, etc.)
-   - **Best stories go to the primary company** — assign Tier 1 stories there first
-
-4. **Skills & Languages (combined section):**
-   - Format: General skills & Specific skills → Tools, Programming → Languages with levels
-   - Only list skills actually demonstrated in achievements
-   - Mirror JD terminology
-
-5. **What to exclude:**
-   - Tier 3 achievements (unless space allows)
-   - Irrelevant experience
-   - Stories without metrics (flag these first)
+1. Read FULL STAR narrative → what did you DO?
+2. How do those actions demonstrate this skill?
+3. Extract quotes: "This demonstrates [skill] because..."
+4. Rate: Strong (clear action + metrics) / Moderate (implies or weak metrics) / Gap (no evidence)
+5. One story can cover multiple skills — extract different aspects
+6. Multi-story skills: note ALL stories from ALL companies
 
 ---
 
 ## Output
 
-Updated: `target_roles/my_data/[target role_folder]/skills_mapping.md`
-Updated: `target_roles/my_data/[target role_folder]/cv.md`
+Updated: `target_roles/my_data/[role_folder]/skills_mapping.md`
 
-Files created/updated:
-- ✅ Skills mapping with waterfall phases, coverage tables, and recommendations
-- ✅ CV tailored to this target role with matched achievements
-- ✅ Go/no-go recommendation based on critical skills
+- Step 1 → Phase 1 (primary coverage)
+- Step 2 → Phase 2-3 (gap filling + reinforcement)
+- Step 3 → Final Coverage Map + Tiering + Readiness + CV Insights
+
+**No CV generated** — that's `/generate-cv` only after 🟢 Go decision.

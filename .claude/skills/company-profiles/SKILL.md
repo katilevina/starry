@@ -11,13 +11,15 @@ description: Complete guide to creating company profiles built FROM achievements
 
 Achievements are the **source of truth**. Company profiles extract and summarize what you actually did (from achievements) plus high-level company context.
 
+**Only `employment`-type stories have company profiles.** Project-type stories (`Type: project`) are side projects, consulting gigs, and personal projects — they don't need or get company profiles.
+
 ---
 
 ## Data Extraction Strategy
 
 ### Step 1: Check for Existing Achievements FIRST
 
-**Search all story files** in `achievements/my_data/` for this company name
+**Search all story files** in `achievements/my_data/` for this company name — **only `Type: employment` stories** (project stories don't have company profiles)
 
 **If NO achievements exist:**
 - Ask user: "Do you have achievements for this company yet?"

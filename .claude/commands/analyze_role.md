@@ -74,7 +74,13 @@
 
 8a. **Create empty skills_mapping.md** and **cv.md** from templates
 
-9a. **Update user** and suggest `/map-skills`
+9a. **Update `target_roles/my_data/roles_index.md`:**
+   - Update Market Signals header counts (total role folders)
+   - Add new row to Role Type Fit Matrix (Result = "Not applied yet")
+   - Add to Strategy → Roles ready to deploy (or Pursue/Test as appropriate)
+   - Update "Last Updated" timestamp
+
+10a. **Update user** and suggest `/map-skills`
 
 ---
 
@@ -99,7 +105,11 @@
    - Explain what changed: "New JD added X new skills, Y skills got priority boost"
    - Offer to re-run skills mapping and regenerate CV
 
-8b. **Update user**:
+8b. **Update `target_roles/my_data/roles_index.md`:**
+   - Update "Last Updated" timestamp to reflect role refinement
+   - If new JD introduces significant domain shift → note in Market Signals (Not enough data yet) or update Positioning Insights
+
+9b. **Update user**:
    - Show what changed in the merged requirements
    - Highlight new market insights
    - Suggest next steps
@@ -207,5 +217,6 @@ I've updated the role profile. Want to re-run `/map-skills` to refine your CV?
 
 **New role:** `target_roles/my_data/role_[slug]/` (role_profile.md + skills_mapping.md + cv.md)
 **Merged role:** Updated `target_roles/my_data/role_[slug]/role_profile.md`
+**Roles index:** Updated `target_roles/my_data/roles_index.md` with new role count or role refinement
 
 Next step: Use `/map-skills` to match stories to this role (or re-run after merge)

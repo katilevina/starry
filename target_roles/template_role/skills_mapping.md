@@ -101,6 +101,22 @@ Analysis of how your stories demonstrate the required skills for this role.
 
 ---
 
+### Projects (Type: project)
+
+**Stories analyzed:** [list project-type stories]
+
+**⚠️ NOTE:** Project-type stories (`Type: project`) are analyzed for skills coverage alongside employment stories. However, they are placed differently in the CV:
+* **In skills mapping:** Same analysis as employment stories — quote-based evidence, metrics, coverage assessment
+* **In CV:** Project stories go to the optional **Projects** section (not Experience) or may be woven into Summary. Only include if the project clearly strengthens the position for this specific role.
+* **No company profiles:** Project stories don't have company profiles — all context comes from the story itself.
+
+**Gaps filled by project stories:**
+* [Same format as above, if applicable]
+
+**Gaps NOT filled:** [list remaining]
+
+---
+
 ## Phase 3: Strengthening by Priority
 
 ### Critical Skills — Additional Stories
@@ -134,6 +150,35 @@ Analysis of how your stories demonstrate the required skills for this role.
 | Skill 3 | Critical | ⚠️ Moderate | [[story_Z]] | - | Primary |
 | Skill 4 | High | ✅ Strong | - | [[story_A]] | Previous 1 |
 | Skill 5 | Medium | ❌ Gap | - | - | - |
+
+---
+
+## 🔑 Keyword Evidence Mapping
+
+**Which stories provide evidence for which top JD keywords.**
+**Bridges keyword requirements from role_profile.md to specific stories.**
+
+| JD Keyword (Rank) | Evidence from Stories | Quote/Reference | Coverage |
+|-------------------|----------------------|-----------------|----------|
+| keyword_1 (#1) | [[story_X]] | "Quote showing the keyword in action" | ✅ Strong |
+| keyword_2 (#2) | [[story_Y]] | "Another quote" | ✅ Strong |
+| keyword_3 (#3) | [[story_Z]] | "Partial evidence" | ⚠️ Partial |
+| keyword_4 (#4) | - | No direct evidence | ❌ Gap |
+
+**Purpose:**
+- **CV generation:** Use quotes and references to craft keyword-rich bullets
+- **ATS optimization:** Ensure top-ranked keywords appear naturally in CV
+- **Gap identification:** ❌ keywords signal what to emphasize or reframe
+- **Interview prep:** Prepare stories that prove keywords you claimed
+
+**How it works:**
+1. Take top 10-15 keywords from role_profile.md "Top JD Keywords (Aggregated)"
+2. Match each keyword to story(es) that demonstrate it
+3. Extract specific quotes as evidence
+4. Use this mapping to:
+   - Write CV bullets with natural keyword inclusion
+   - Prepare interview examples that prove claimed keywords
+   - Identify which gaps are addressable via reframing vs need new stories
 
 ---
 
@@ -283,28 +328,82 @@ Analysis of how your stories demonstrate the required skills for this role.
 
 ---
 
-## 🚦 Go/No-Go Decision
+## 🚦 Readiness Assessment
 
-**Before applying, assess:**
+**Coverage Summary:**
 
-* [ ] **Critical skills covered:** At least 80% of "must-have" skills have strong evidence
-* [ ] **No deal-breaker gaps:** Missing skills aren't make-or-break for this role
-* [ ] **Compelling narrative:** Your stories tell a coherent story for this role
-* [ ] **Authentic fit:** You can genuinely speak to all stories in interviews
+| Priority | Covered | Total | % |
+|----------|---------|-------|---|
+| Critical | X | Y | Z% |
+| High | X | Y | Z% |
+| Medium | X | Y | Z% |
 
-**Recommendation:** ✅ Apply / ⚠️ Strengthen first / ❌ Skip
-
-**Reasoning:**
-[Your assessment of whether this role is a good match]
+**Overall:** [X/Y total requirements covered (Z%)]
 
 ---
 
-## 📝 Next Actions
+### Scenario: [🟢 Go / 🟡 Go with caveats / 🟠 Wait & strengthen / 🔴 Not yet]
 
-* [ ] [Action 1: e.g., "Add metrics to story_3"]
-* [ ] [Action 2: e.g., "Develop story about budget management at [Company]"]
-* [ ] [Action 3: e.g., "Generate CV from Tier 1 stories"]
-* [ ] [Action 4: e.g., "Research company more deeply"]
+**Selected scenario:** [Label]
+
+**Reasoning:**
+[Detailed explanation of why this scenario applies]
+
+---
+
+### Gaps Analysis & Action Options
+
+#### [Gap 1: Skill name] — [Priority]
+
+*Options to close this gap:*
+* **(a) Add achievement** — [What story could cover this / Who to ask / Where to find data]
+  * Confidence: 🔴 High / 🟡 Medium / 🟢 Worth checking
+  * Estimated time: [e.g., "1 hour conversation to document existing experience"]
+* **(b) Training / course** — [Specific recommendation: platform + course name + duration]
+  * When applicable: [e.g., "If you haven't done this type of work before"]
+  * Estimated time: [e.g., "4 weeks part-time"]
+* **(c) Pet-project / practice** — [What to build / What skills it demonstrates]
+  * When applicable: [e.g., "For portfolio evidence"]
+  * Estimated time: [e.g., "2-3 weekends"]
+* **(d) Reframe existing experience** — [Which story, what angle]
+  * When applicable: [e.g., "If the skill is adjacent to something you have done"]
+* **(e) Accept as gap** — [Impact assessment: how critical is this really?]
+  * When applicable: [e.g., "Medium priority, can compensate with other strengths"]
+
+**Recommended option:** [a/b/c/d/e] — [reasoning]
+
+#### [Gap 2: Skill name] — [Priority]
+[Same format]
+
+---
+
+### Recommendations
+
+**Short-term (before applying):**
+* [e.g., "Add 2 stories via `/add-achievement` — estimated 2 hours"]
+* [e.g., "Strengthen metrics in story_X — find data in [source]"]
+
+**Medium-term (if waiting):**
+* [e.g., "Complete [Course Name] on [Platform] — 4 weeks, covers [Skill Y]"]
+* [e.g., "Build a pet-project demonstrating [Skill Z] — 2-3 weekends"]
+
+**Alternative paths (if gaps are structural):**
+* [e.g., "Consider adjacent role: [role type] where [missing skill] is nice-to-have, not required"]
+* [e.g., "Target companies in [industry] where your background is a better fit"]
+* [e.g., "Wait for roles at companies transitioning from [your domain] to [target domain] — your experience becomes an asset, not a gap"]
+
+---
+
+### Decision Record
+
+**User's choice:** [Generate CV now / Add N stories first / Take pause for learning / Pivot to adjacent role / Skip this role]
+
+**Next step:**
+* [If "Generate CV now"] → Run `/generate-cv`
+* [If "Add stories first"] → Run `/add-achievement` for [N stories], then re-run `/map-skills`
+* [If "Take pause"] → Return after [estimated time], re-assess
+* [If "Pivot"] → Check existing `role_*` folders or run `/analyze-role` for adjacent role
+* [If "Skip"] → Note reasoning, move to next opportunity
 
 ---
 

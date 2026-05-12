@@ -18,6 +18,17 @@ Overview of all STAR stories in your bank.
 
 ***
 
+## Projects
+
+*Side projects, consulting gigs, personal projects — stories with `Type: project`. These don't have company profiles.*
+
+### \[Project/Client Name] (\[Year Range])
+
+[story\_XX](story_XX_[slug].md) — \[Title] *(project)*
+*\[Period]* · \[Brief context: 1-2 sentences]
+
+***
+
 ## How to Add Stories
 
 Use the `/add-achievement` command to interactively create a new STAR story.

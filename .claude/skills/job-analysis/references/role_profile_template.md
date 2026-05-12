@@ -73,22 +73,22 @@ required_skills:
 
 *Skills confirmed by multiple JDs or marked as "required" in recent JDs.*
 
-| Skill | Priority | Frequency | Evidence Needed | My Coverage |
-|-------|----------|-----------|-----------------|-------------|
-| Skill 1 | Critical | 2/2 JDs | [What JD says] | [To be filled] |
-| Skill 2 | Critical | 1/2 JDs | [What JD says] | [To be filled] |
+| Skill | Priority | Frequency | Evidence Needed |
+|-------|----------|-----------|-----------------|
+| Skill 1 | Critical | 2/2 JDs | [What JD says] |
+| Skill 2 | Critical | 1/2 JDs | [What JD says] |
 
 ### Nice-to-Have (High Priority)
 
-| Skill | Priority | Frequency | Evidence Needed | My Coverage |
-|-------|----------|-----------|-----------------|-------------|
-| Skill 3 | High | 1/2 JDs | [What JD says] | [To be filled] |
+| Skill | Priority | Frequency | Evidence Needed |
+|-------|----------|-----------|-----------------|
+| Skill 3 | High | 1/2 JDs | [What JD says] |
 
 ### Bonus Skills
 
-| Skill | Priority | Frequency | Evidence Needed | My Coverage |
-|-------|----------|-----------|-----------------|-------------|
-| Skill 4 | Medium | 1/2 JDs | [What JD says] | [To be filled] |
+| Skill | Priority | Frequency | Evidence Needed |
+|-------|----------|-----------|-----------------|
+| Skill 4 | Medium | 1/2 JDs | [What JD says] |
 
 ---
 
