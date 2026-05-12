@@ -28,6 +28,15 @@ A structured story that demonstrates your skills through measurable results:
 * User says "we had metrics" → ❌ do NOT write "tracked 15 KPIs including..." (they never said "15")
 * ✅ Use the user's exact words. If you need specificity → ASK: "Did you track specific metrics? How many friction points?"
 
+**Reflection MUST come from the user — ALWAYS:**
+
+* ❌ NEVER generate Reflection yourself, even if the story is short or a side project
+* ❌ NEVER infer what the user learned, felt, or would change — these are personal insights only they can provide
+* ❌ NEVER write generic filler like "I learned a lot" or "this broadened my perspective"
+* ✅ ALWAYS ask the user all 4 Reflection questions (learned, differently, shaped, advice) BEFORE writing the file
+* ✅ This applies to ALL story types: employment, project, short gigs, volunteer work — no exceptions
+* ✅ If the user skips a question → leave it out rather than making something up
+
 **NO SKILLS IN ACHIEVEMENT FILES** — Skills analysis happens per-target-role in `skills_mapping.md`, not in the achievement itself. Achievements are role-agnostic evidence sources.
 
 **EVERY CLAIM NEEDS A NUMBER** — Before/after metrics, percentages, time saved, revenue impact, team size affected, budget managed.

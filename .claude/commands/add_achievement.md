@@ -250,11 +250,12 @@ Here's your achievement. Any edits needed, or shall I save it?
   * **Example:** story\_01-04 (Company X), story\_05-08 (Company Y). New story from Company X → becomes story\_05, old story\_05-08 → story\_06-09
 * **Be persistent about metrics** — don't accept "it improved" without a number
 * **Keep user focused on THEIR actions** — not what "we" did
-* **Probe deeply in Reflection** — this is where growth mindset shows
+* **Probe deeply in Reflection — AND USE THE USER'S ANSWERS, NOT YOUR OWN:**
   * "What did you learn about yourself?"
   * "What surprised you?"
   * "What would you change?"
   * "How did this prepare you for future roles?"
+  * ⚠️ **NEVER write Reflection without asking first** — even for short side projects, volunteer gigs, or stories without metrics. Always ask all 4 questions before writing the file. If the user skips a question → omit it rather than fabricating.
 * **DO NOT extract skills into the achievement** — skills analysis happens per-role in skills\_mapping.md
 * **Tags are for navigation only** — basic categories like "data", "product", "launch" (added to index, not to story file)
 * **Generate a clear slug** — use lowercase with underscores, e.g., `story_05_data_framework.md` (with chronological number)
