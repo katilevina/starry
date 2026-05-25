@@ -109,13 +109,39 @@ English, level
 
 ## Bullet Format Rules
 
+### ⚠️ FRAMING HONESTY RULE (CRITICAL)
+
+**Principle:** Facts from stories must keep their ORIGINAL framing. Do not rephrase actions in JD language to make them sound more strategic, more formal, or more aligned with the role than they actually were.
+
+**The test:** Read the bullet aloud. Does it make the work sound like a different, more senior, or more strategic activity than what the story describes? If yes → rewrite.
+
+**Allowed:**
+- Choosing WHICH facts to include based on JD relevance (selection)
+- Choosing which facts to emphasize vs. de-emphasize (prioritization)
+- Using domain-specific terminology for industry-standard concepts (e.g., "cohort" for a course)
+- Using JD verbs that ACCURATELY describe what you did (if you "built" something, say "built")
+
+**NOT allowed:**
+- Reframing "tried different ways" as "executed multi-channel outreach strategy"
+- Reframing "noticed X worked better" as "discovered through analysis that X outperformed Y"
+- Reframing "had partners" as "built strategic partnerships with enterprise clients"
+- Using JD nouns/terms that upgrade the scope or formality of what you did
+- Inflating casual/organic actions into systematic processes
+
+**Why this matters:**
+- You will be asked about every bullet in an interview
+- JD keyword matching helps pass ATS but fails the interview if you can't speak to the reframed version
+- Honest framing builds confidence; inflated framing creates anxiety
+
+### Bullet Structure
+
 **Every bullet follows: `[Strong verb] [result] due to / by [action]`**
 
 - **Result goes FIRST** — the impact, the metric, the outcome
 - **Then how** — the action, method, or approach that led to it
 - Every bullet MUST have a number/metric
-- Use strong verbs from JD (Led, Built, Grew, Reduced, Launched, etc.)
-- Mirror JD language
+- Use strong verbs that ACCURATELY describe what you did — JD verbs are fine if truthful, but don't upgrade "tried" to "executed" or "noticed" to "analyzed"
+- Use language that accurately represents what you did — JD keywords are acceptable ONLY if they truthfully describe your actions (not inflate them)
 - **Apply domain-specific framing** — use vocabulary from Domain Context in role_profile.md (e.g., "learning platform" not "product" for EdTech)
 
 **Examples:**

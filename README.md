@@ -10,6 +10,20 @@
 
 ---
 
+## Why Starry
+
+Job hunting isn't one task — it's a chain of cognitive jobs, and most tools only solve the last one. Starry is a **career operating system**, not a CV builder. It carries one principle through every stage: **capture once, reuse forever.**
+
+```
+Reflect ─▶ Position ─▶ Target ─▶ Map & Decide ─▶ Apply ─▶ Track ─▶ Converse ─▶ Learn (loop)
+```
+
+One STARR story powers many CVs, cover letters, and interview answers. One company profile grounds every story from that workplace. One target role absorbs many JDs over time. The system compounds — each cycle starts where the last one ended.
+
+📖 **Read the full product story → [PRODUCT.md](./PRODUCT.md)**
+
+---
+
 ## Features
 
 - **A structured way to think about your work.** STARR turns "I did some stuff" into stories with cause, action, and outcome — useful for CVs, interviews, and figuring out what you actually want next.
@@ -17,7 +31,12 @@
 - **Auto-built company profiles.** Extracted from your achievements. No double entry.
 - **Generalised target roles.** Synthesised from 20+ similar job postings, not a single JD.
 - **Evidence-based skills mapping.** Match achievements to role requirements with direct quotes from your stories.
-- **Tailored CVs.** Generated per role. Every bullet backed by a metric.
+- **Readiness Assessment.** Honest 4-scenario gate (🟢 Go / 🟡 Caveats / 🟠 Strengthen / 🔴 Not yet) before you spend interview cycles.
+- **Tailored CVs and cover letters.** Generated per role. Every bullet backed by a metric. Framing honesty rule prevents reframing into JD vocabulary you can't defend.
+- **Hypothesis-driven job search.** Name the bet, then test it via batch campaigns. Strategy in `hypotheses/`, execution in `applications/campaign_*/`.
+- **Application + market tracking.** Per-application CV snapshots, conversion funnel, response rates by role type and channel.
+- **Recommendations library.** Reusable testimonials from past managers and colleagues.
+- **`/fix` propagation.** Spot an error once, correct it everywhere it appears downstream.
 
 ## Install
 
@@ -50,13 +69,22 @@ Initial setup takes 1–2 hours. Each subsequent CV takes 10 minutes.
 
 ```
 starry/
-├── achievements/         What you did
-├── companies_i_worked/   Where you did it
-├── target_roles/         What you want next
-└── .claude/commands/     Automation
+├── achievements/         What you did                (STARR stories)
+├── companies_i_worked/   Where you did it            (auto-built profiles)
+├── recommendations/      What others said about you  (testimonials)
+├── target_roles/         What you want next          (role + JDs + CV)
+├── hypotheses/           What you're betting on      (strategy)
+├── applications/         What you sent and to whom   (snapshots + campaigns)
+├── references/           External materials you collected (gitignored content)
+└── .claude/
+    ├── skills/           Knowledge (theory + templates)
+    └── commands/         Automation (interactive flows)
 ```
 
-Achievements and companies are permanent — your history. Target roles are dynamic — built from market analysis. CVs are generated per role.
+**Permanent layer:** achievements, companies, recommendations — your history.
+**Dynamic layer:** target roles, hypotheses — built from market analysis, evolve over time.
+**Execution layer:** applications and campaigns — frozen snapshots of what was actually sent.
+**Support layer:** external references — inputs that sharpen your skills' outputs.
 
 ## Tracking Your Applications
 

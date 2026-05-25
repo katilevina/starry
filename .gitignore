@@ -19,3 +19,9 @@ TODO_BEFORE_RELEASE.md
 # Personal user data
 # Uncomment the line below if using in PUBLIC repository
 # **/my_data/
+
+# External references library
+# Keep structure (sources.md per folder + README.md), ignore the actual content
+# (markdown materials, screenshots, PDFs etc. are local-only)
+references/*/**
+!references/*/sources.md

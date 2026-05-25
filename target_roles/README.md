@@ -38,6 +38,26 @@ Each target role folder contains 3 files:
 
 ---
 
+## 📊 Roles Index
+
+**File:** `my_data/roles_index.md` — Market response tracking across all roles
+
+**What it tracks:**
+- Which roles generate the most employer interest
+- Reply rates by role type (Project Manager, Specialist, Manager)
+- Channel performance (personal referrals, referral links, company website)
+- Top performing roles vs low performers
+- Recommendations on which roles to prioritize
+
+**When it updates:**
+- When you create a new target role (via `/analyze-role`)
+- When you submit an application (tracked in `applications_index.md`)
+- When you receive a response (replied, rejected, interview, etc.)
+
+**Template:** `roles_index_template.md` in this folder
+
+---
+
 ## 🎯 Why This Structure?
 
 1. **Work smarter, not harder** — Analyze once, apply to many similar jobs

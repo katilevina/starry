@@ -4,7 +4,7 @@
 
 **🗣️ Communication Style:** Use informal address with the user ("ты" in Russian, informal "you" in English, or equivalent informal address in whatever language we're communicating in).
 
-**Last Updated:** 2026-05-08 (added cover-letters skill and /write-cl command)
+**Last Updated:** 2026-05-20 (added External References Library — `/references/` folder for storing external materials per skill)
 
 ***
 
@@ -85,6 +85,14 @@ ls -la /path/to/project/.claude/skills/
 * Template in `references/cl_template.md`
 * Examples of good/bad CLs in `references/cl_examples.md`
 * Integration with CV + JD for personalized, specific cover letters
+
+**🔬 Hypotheses & Campaigns** → `.claude/skills/hypotheses/SKILL.md`
+
+* Hypothesis-driven job search: define, execute, validate, decide
+* Routing rules — what lives in `hypotheses/` (strategy) vs `applications/campaign_*/` (execution)
+* Campaign folder = all day-to-day files in one place (plan, templates, messages, log)
+* One hypothesis can span multiple roles and campaigns
+* Lifecycle: define → execute → validate → decide (continue / pivot / stop)
 
 **🔧 Fix Errors** → `.claude/skills/fix-errors/SKILL.md`
 
@@ -176,6 +184,15 @@ ls -la /path/to/project/.claude/skills/
 * Shows Market Overview, What's Working / Not Working, Positioning, Strategy
 * No need to open the file — just run the command
 
+**`/start-campaign`** — Set up a batch outreach campaign for a hypothesis
+
+* Prerequisite: hypothesis defined in `hypotheses/`, CV generated in `target_roles/`
+* Identifies which hypothesis the campaign serves
+* Clusters companies by domain, assigns tracks (formal vs cold) and priorities
+* Writes message templates per cluster
+* Snapshots CV, initializes outreach log
+* Creates full campaign folder in `applications/campaign_*/`
+
 ***
 
 ## ⚠️ TEMPLATE SYNC RULE
@@ -203,10 +220,52 @@ ls -la /path/to/project/.claude/skills/
 | Skill              | Skill Reference Template                                                              | Folder Template                                                            |
 | ------------------ | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | starr-achievements | `references/template_story.md`                                                        | `achievements/template_story.md`, `achievements/template_stories_index.md` |
-| company-profiles   | `references/company_template.md`                                                      | `companies_i_worked/template_company.md`                                   |
+| company-profiles   | `references/company_template.md`                                                      | `companies_i_worked/template_company.md`, `companies_i_worked/template_companies_index.md` |
 | job-analysis       | `references/role_profile_template.md`, `skills_mapping_template.md`, `cv_template.md` | `target_roles/template_role/role_profile.md`, `skills_mapping.md`, `cv.md` |
 | company-context    | `references/quick_setup_reference.md`                                                 | N/A (reference guide only)                                                 |
 | cover-letters      | `references/cl_template.md`                                                           | `applications/my_data/template_cover_letter.md`                            |
+| applications       | SKILL.md → applications_index.md Format                                               | `applications/template_applications_index.md`                              |
+| hypotheses         | SKILL.md → hypotheses_index.md Format + hypothesis.md Format                          | `hypotheses/template_hypotheses_index.md`, `hypotheses/template_hypothesis.md` |
+| (standalone)       | N/A                                                                                   | `target_roles/roles_index_template.md`                                     |
+
+***
+
+## 📎 EXTERNAL REFERENCES LIBRARY
+
+**Цель:** Хранить внешние материалы (гайды, статьи, скриншоты, PDF, конспекты курсов), которые усиливают наши скиллы.
+
+**Где живёт:** Папка `/references/` в корне проекта. Видна на одном уровне с `achievements/`, `applications/`, `target_roles/`.
+
+**Структура:**
+
+```
+references/
+├── README.md                # как пользоваться + правила
+├── [skill-name]/            # папка под каждый скилл из .claude/skills/
+│   ├── sources.md           # таблица-индекс источников
+│   └── <материалы>          # .md, .png, .pdf, .jpg — что угодно
+└── general/                 # материалы, не привязанные к одному скиллу
+    └── sources.md
+```
+
+**Два уровня references — не путать:**
+
+1. `.claude/skills/[name]/references/` — **наши** шаблоны и примеры (source of truth для скилла)
+2. `/references/[name]/` — **внешка** из открытых/закрытых источников (вдохновение, примеры, приёмы)
+
+**Что в git, что не в git:**
+- ✅ Коммитим: `references/README.md`, `references/*/sources.md`, структуру папок
+- ❌ Игнорируем: сам контент материалов (см. `.gitignore` — секция `External references library`)
+
+Логика: шаблон проекта остаётся публичным, контент материалов — локально на твоей машине (важно для платных курсов и копирайта).
+
+**⚠️ При создании нового скилла ОБЯЗАТЕЛЬНО:**
+
+1. Создай папку `references/[skill-name]/` (имя совпадает с именем скилла из `.claude/skills/`)
+2. Создай в ней `sources.md` (скопируй из любого существующего скилла и почисти таблицу)
+3. Добавь секцию `## 📎 External References` в `SKILL.md` нового скилла со ссылкой на `/references/[skill-name]/`
+
+Подробности, типы источников и уровни доступа — в `/references/README.md`.
 
 ***
 
@@ -335,6 +394,10 @@ Before finalizing any document:
 * [ ] **Training recommendations are specific** (platform + course name + duration), not vague
 * [ ] **User's decision recorded** in skills_mapping.md (not assumed)
 * [ ] **CV NOT generated** unless user explicitly chose 🟢 Go or 🟡 Go with caveats
+* [ ] **Role framing analysis done** — JD verb patterns analyzed (Builder/Operator/Growth/Leader/Strategist), bullet framing matches
+* [ ] **Story deep mining done** — Tier 1/2 Action sections re-read for process/system/method details
+* [ ] **Anti-pattern check passed** — no metric-only bullets, no generic verbs, no JD keyword reframing, role type obvious without metrics
+* [ ] **Framing Honesty Rule followed** — CV bullets describe what user ACTUALLY did in natural language, not reframed in JD vocabulary to sound more strategic/formal (e.g., "tried channels" ≠ "executed multi-channel strategy")
 * [ ] CV bullets all have metrics
 * [ ] CV follows template format (result-first bullets, mission line, etc.)
 * [ ] CV uses domain-specific framing and vocabulary from Domain Context
@@ -364,6 +427,12 @@ Before finalizing any document:
 * [ ] `applications_index.md` updated with new entry
 * [ ] `roles_index.md` updated (Role Type Fit Matrix, Market Signals, Strategy)
 * [ ] Conversion funnel counts recalculated
+
+**Cold Outreach (Campaign):**
+
+* [ ] Message saved to `campaign_*/messages/[company].md`
+* [ ] `campaign_*/outreach_plan.md` updated (company status + stats)
+* [ ] `applications_index.md` updated — **All Sends, Active, Pipeline, Channel Performance, Campaigns** (mandatory, never skip)
 
 ***
 
@@ -522,6 +591,40 @@ Before finalizing any document:
 
 **If user confirms** → suggest `/add-achievement` → re-run mapping
 
+### Hypotheses Drive Job Search Strategy
+
+**Principle:** Job search is hypothesis-driven. Each hypothesis represents a bet: "I think companies like X need someone like me for role Y."
+
+**What a hypothesis contains:**
+- What we're testing and why
+- Success criteria (defined upfront)
+- Execution plan (outreach, applications, conversations)
+- Validation results (filled in when hypothesis concludes)
+
+**What a hypothesis does NOT contain:**
+- Role artifacts (JDs, skills mappings, CVs) — those live in `target_roles/`
+- Application snapshots — those live in `applications/`
+- Message drafts for batch outreach — those live in `applications/campaign_*/messages/`
+
+**What belongs in hypotheses/:**
+- `hypothesis.md` — strategy, positioning, success criteria, validation loop
+
+**What belongs in applications/campaign_*/:**
+- `outreach_plan.md` — company lists, tracks, priorities, status tracking, stats
+- `cold_outreach_templates.md` — message templates by domain cluster
+- `messages/` — sent message drafts per company
+- `cv_sent.md` — CV snapshot for batch
+
+**Why:** During execution, all working files live in one place (campaign folder). No jumping between folders. Hypotheses/ is for strategy and validation only.
+
+**Lifecycle:**
+1. **Define** — user describes what they want to test
+2. **Execute** — outreach, applications (links to campaigns in applications/)
+3. **Validate** — results vs criteria, patterns identified
+4. **Decide** — continue, pivot, or stop
+
+**One hypothesis can span multiple roles.** Example: "Post-raise startups" hypothesis uses both "Founding Product & Ops Lead" (cold) and "Customer Success Manager" (formal application to gaiia).
+
 ***
 
 ## 📂 DIRECTORY STRUCTURE
@@ -550,14 +653,17 @@ starry/
 │   │   │   ├── SKILL.md
 │   │   │   └── references/
 │   │   │       └── quick_setup_reference.md
-│   │   └── applications/
-│   │       └── SKILL.md         # Application tracking workflow
+│   │   ├── applications/
+│   │   │   └── SKILL.md         # Application tracking workflow
+│   │   └── hypotheses/
+│   │       └── SKILL.md         # Hypothesis-driven job search + routing rules
 │   └── commands/                # Commands (interactive flows)
 │       ├── quick_setup.md
 │       ├── add_achievement.md
 │       ├── add_company.md
 │       ├── analyze_role.md
-│       └── map_skills.md
+│       ├── map_skills.md
+│       └── start_campaign.md
 ├── achievements/
 │   ├── template_story.md               # ⚠️ Keep synced with skill reference
 │   ├── template_stories_index.md       # ⚠️ Keep synced with skill reference
@@ -580,16 +686,27 @@ starry/
         ├── role_profile.md     # JD History + merged requirements
         ├── skills_mapping.md
         ├── cv.md
+        ├── cover_letter.md     # (optional, per company)
         ├── jd_company1_2026-04-30.md  # Full original JDs
         └── jd_company2_2026-05-15.md  # Added with each new JD
+├── hypotheses/                   # Job search hypotheses — strategy and validation only
+│   ├── hypotheses_index.md      # All hypotheses: in progress / queued / validated / invalidated
+│   └── [hypothesis_slug]/       # One folder per hypothesis
+│       └── hypothesis.md        # What, why, success criteria, validation results
 ├── applications/                # CV snapshots sent to companies
 │   ├── README.md
 │   └── my_data/
 │       ├── README.md
 │       ├── applications_index.md   # Master tracking + conversion funnel
-│       └── app_[company]_[date]/   # One folder per application
-│           ├── cv_sent.md          # Exact CV snapshot
-│           └── cover_email.md      # (optional)
+│       ├── app_[company]_[date]/   # One folder per formal application
+│       │   ├── cv_sent.md          # Exact CV snapshot (frozen)
+│       │   └── cover_letter.md     # (optional, frozen)
+│       └── campaign_[name]/        # Batch outreach (same CV to many companies)
+│           ├── outreach_plan.md    # Companies, tracks, priorities, status + stats
+│           ├── cold_outreach_templates.md  # Message templates by cluster
+│           ├── cv_sent.md          # CV snapshot for batch
+│           └── messages/           # Sent message drafts per company
+│               └── [company].md
 ```
 
 ***

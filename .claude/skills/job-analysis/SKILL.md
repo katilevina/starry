@@ -486,6 +486,86 @@ Write to `skills_mapping.md` Readiness Assessment section:
 4. User asks for CV without choosing a target role → ask first
 5. Required story files missing → list them, suggest `/add-achievement`
 
+### Pre-Generation: Role Framing Analysis (CRITICAL)
+
+**Why this step exists:** Skills mapping tells you WHAT to include. But without framing analysis, a "Product Operations" CV can read as "Business Operations" — right skills, wrong positioning. This step determines HOW to frame every bullet so the CV speaks the role's language.
+
+**Run this step AFTER reading skills_mapping.md and BEFORE writing any bullet.**
+
+#### Step A: JD Verb Pattern Analysis
+
+Analyze the JD's dominant verb patterns to determine what TYPE of professional the role expects:
+
+| Verb pattern | Signals | Leading framing |
+|---|---|---|
+| **Builder:** "design", "build", "create", "establish", "implement", "develop" | Infrastructure, processes, systems from scratch | Lead bullets with **HOW** — the method, process, or system designed |
+| **Operator:** "run", "manage", "optimize", "maintain", "improve", "streamline" | Existing operations, efficiency, scale | Lead bullets with **impact on system** — efficiency gains, adoption rates |
+| **Growth:** "drive", "grow", "scale", "increase", "accelerate", "launch" | Revenue, users, metrics | Lead bullets with **WHAT** — the metric, the outcome, the growth |
+| **Leader:** "lead", "manage", "mentor", "develop", "build team" | People, culture, org design | Lead bullets with **WHO** — team size, structure, development |
+| **Strategist:** "define", "own", "set", "align", "create vision" | Direction, priorities, frameworks | Lead bullets with **scope** — what was defined, for whom, with what authority |
+
+**How to determine dominant pattern:**
+1. Count verbs in JD responsibilities section
+2. The pattern with the most verbs = PRIMARY framing
+3. A second strong pattern = SECONDARY framing (can appear in supporting bullets)
+4. Write down: "This role is primarily [Builder/Operator/Growth/Leader/Strategist] with secondary [X] framing"
+
+**Example:** Product Operations Team Lead JD → verbs: "design", "build", "establish", "implement", "streamline" → PRIMARY: Builder, SECONDARY: Operator → bullets should lead with HOW (processes, systems, methods designed/built).
+
+#### Step B: Story Deep Mining for Framing Evidence
+
+**Beyond skills mapping — re-read stories specifically looking for:**
+
+1. **Processes designed** (not just used) — "created SOPs", "established prioritization framework", "built incident tracking system"
+2. **Systems built** (not just results) — "rolled out Jira for agile", "set up self-service design system", "implemented goal decomposition with Miro+Jira"
+3. **Methodologies introduced** (not just followed) — "moved team to OKR-based planning", "introduced cross-functional observation sessions"
+4. **Tools implemented** (not just used) — "deployed ChatGPT for ticket generation", "set up AmoCRM with per-stage instructions"
+5. **Change management** — "drove adoption across N teams", "trained X people on new workflow", "achieved N% adoption rate"
+
+**Why this matters:** These details are the difference between "Grew revenue 2.6×" (generic business ops) and "Designed goal decomposition system with Miro+Jira, driving 2.6× revenue growth through aligned execution" (product ops). Same metric, completely different positioning.
+
+**How to mine:**
+- Read each Tier 1 and Tier 2 story's Action section slowly
+- Highlight every sentence that describes HOW something was done
+- For each highlighted sentence, ask: "Does this show me designing/building/implementing something?"
+- Extract the specific process/system/method/tool + the outcome it produced
+
+#### Step C: Bullet Framing Rules by Role Type
+
+After Steps A and B, apply framing rules:
+
+**Builder/Operator roles (most common for "Operations" titles):**
+- Bullet format: `[Strong verb] [PROCESS/SYSTEM/METHOD] → resulting in [OUTCOME with metric]`
+- Example: "Designed goal decomposition system with Miro+Jira, aligning quarterly OKRs to sprint-level tasks for 3 cross-functional crews"
+- The HOW dominates the bullet. The metric is supporting evidence, not the lead.
+
+**Growth/PM roles:**
+- Bullet format: `[Strong verb] [OUTCOME with metric] by/through [METHOD]`
+- Example: "Grew monthly active users by 40% by redesigning the onboarding flow"
+- The WHAT dominates. The HOW is supporting detail.
+
+**Leadership-heavy roles:**
+- Bullet format: `[Strong verb] [TEAM/ORG CHANGE] → resulting in [OUTCOME]`
+- Example: "Restructured 8-person team from functional silos into 3 cross-functional crews, increasing throughput by X%"
+- The WHO dominates. The outcome validates the structural decision.
+
+**Default rule:** If unsure, match the JD's first 3 responsibility bullets. Their verb pattern = your bullet pattern.
+
+#### Step D: Anti-Pattern Detection
+
+Before finalizing bullets, check for these red flags:
+
+| Anti-pattern | What it looks like | Fix |
+|---|---|---|
+| **Wrong role type framing** | All bullets lead with revenue/metrics for a "design processes" JD | Re-read Step A. Rewrite bullets to lead with HOW. |
+| **Shallow bullets** | Bullet describes outcome but not method ("Grew revenue 2.6×") | Re-read Step B. Find the process/system detail. Add it. |
+| **Missed process details** | Story has "built Jira workflow" but bullet just says "managed projects" | Re-read story Action section. Extract the specific process. |
+| **Generic verbs** | "Managed", "handled", "was responsible for" | Replace with role-specific verbs from JD (designed, built, implemented, established) |
+| **Metric-only bullets** | "2.6× growth" without HOW | Add the method that produced the growth |
+| **JD keyword reframing** | Facts are correct but described in JD vocabulary that inflates scope or formality ("testing channels" → "executing multi-channel acquisition strategy", "noticed pattern" → "discovered through analysis") | Rewrite bullet using the story's own natural language. Keep it simple and honest. If you tried things and noticed what worked, say that. |
+
+**Self-check question:** "If I remove all metrics from my bullets, does the CV still clearly show WHAT TYPE of professional this person is?" If no → framing is wrong. The role type should be obvious from verbs and methods alone.
+
 ### CV Strategy
 
 **Primary-First Prioritization:**
@@ -500,9 +580,9 @@ Write to `skills_mapping.md` Readiness Assessment section:
 - Tier 3 → Only if space allows, only for non-primary companies
 
 **Tailoring:**
-- Use target role's priority keywords in headers/bullets
+- Select and prioritize facts that align with JD requirements (WHAT you include)
+- Use JD keywords ONLY when they accurately describe your actual actions (HOW you describe them must stay honest — see Framing Honesty Rule)
 - Reorder bullets by relevance to this target role
-- Mirror market language (what appears across JDs)
 - **Apply domain-specific framing** from Domain Context (e.g., "learning platform redesign" for EdTech, "enterprise deployment" for FinTech)
 - **Use domain-specific tiering** when generating CV for a specific domain
 
@@ -540,11 +620,19 @@ Each company block has:
 4. **Bullets:** 3-4 for primary company, 2-3 for others, 1-2 for earlier
 
 #### Bullet Format (CRITICAL — different from typical CVs)
+
+**⚠️ Framing Honesty Rule:** Describe what you ACTUALLY did using natural language, not JD vocabulary. Facts from stories must keep their original framing. Do not rephrase actions in JD language to make them sound more strategic, more formal, or more aligned with the role than they actually were.
+
+**The test:** Read the bullet aloud. Does it make the work sound like a different, more senior, or more strategic activity than what the story describes? If yes → rewrite.
+
+**Allowed:** Choosing which facts to include (selection), which to emphasize (prioritization), using JD verbs that ACCURATELY describe what you did.
+**NOT allowed:** Reframing "tried different ways" as "executed multi-channel strategy", upgrading "noticed" to "analyzed", inflating "had partners" to "built strategic partnerships".
+
 - **Format:** `[Strong verb] [result] due to / by [action]`
 - **Result goes FIRST** — the impact, the metric, the outcome
 - **Then how** — the action, method, or approach that led to it
 - Every bullet MUST have a number/metric
-- Use strong verbs from JD (Led, Built, Grew, Reduced, Launched, etc.)
+- Use strong verbs that ACCURATELY describe what you did — JD verbs are fine if truthful, but don't upgrade "tried" to "executed" or "noticed" to "analyzed"
 
 **Examples:**
 - Grew monthly active users by 40% by redesigning the onboarding flow
@@ -593,7 +681,12 @@ Each company block has:
 
 ### Before finalizing CV:
 
-- [ ] All bullets follow format: `[Strong verb] [result] due to / by [action]` (result first)
+- [ ] **Role framing analysis completed:** JD verb patterns analyzed, primary framing determined (Builder/Operator/Growth/Leader/Strategist)
+- [ ] **Story deep mining completed:** Re-read Tier 1/2 story Action sections for process/system/method details, not just skills mapping coverage
+- [ ] **Bullet framing matches role type:** Builder/Operator → HOW leads. Growth → WHAT leads. Leader → WHO leads. (See Pre-Generation: Role Framing Analysis)
+- [ ] **Anti-pattern check passed:** No metric-only bullets, no generic verbs, no JD keyword reframing, no shallow bullets. If metrics removed, role type is still obvious from verbs and methods alone.
+- [ ] **Framing Honesty Rule followed:** CV bullets describe what user ACTUALLY did in natural language, not reframed in JD vocabulary to sound more strategic/formal. Test: read bullet aloud — does it make the work sound like a different activity than what the story describes? If yes → rewrite.
+- [ ] All bullets follow format appropriate for role type (see Step C: Bullet Framing Rules)
 - [ ] All bullets have metrics (no exceptions)
 - [ ] Every claim can be backed up with a story
 - [ ] Keywords from JD are used naturally
@@ -606,7 +699,7 @@ Each company block has:
 - [ ] Can speak to every bullet in interview
 - [ ] **Story-Company verification:** For EACH bullet, verify the story belongs to the company section where it's placed (check stories_index if unsure)
 - [ ] **Facts-only verification:** For EACH bullet, confirm every fact comes from the story file — no inferences, no company profile additions without user approval
-- [ ] **ATS language check:** CV bullets use JD keywords naturally (not just synonyms)
+- [ ] **ATS language check:** CV bullets use JD keywords naturally AND truthfully — keywords must accurately describe actual actions, not inflate them
 - [ ] **Domain framing check:** Stories are framed using domain-specific vocabulary from Domain Context (not generic skill descriptions)
 - [ ] **Proofread against BOTH stories AND company documents:** Verify all metrics and facts against both story files AND company profile documents (company profiles may contain details like branch counts, user numbers, etc. that complement stories)
 - [ ] **Currency check:** For international/foreign companies, use appropriate currency (EUR for EU companies, USD for US companies, etc.). Ask user if unsure.

@@ -26,6 +26,53 @@ Every time the user sends a CV, we snapshot the exact text into the application 
 
 ***
 
+## Stage Definitions
+
+**The pipeline tracks two things:** conversion funnel (how many ever reached each stage) and current status (where each app is right now).
+
+### Stages
+
+| Stage | What happened | Who's involved |
+| ----- | ------------- | -------------- |
+| **Sent** | CV sent, no response yet. Stays Sent until company replies or user decides to close. | — |
+| **Replied** | Company responded in any way (positive, negative, forwarded to team). Any human response counts. A rejection = Replied + Rejected. | Recruiter / HR / Contact person / Referral conduit |
+| **Screening** | First live conversation happened. Purpose: basic fit check, "do we want to continue talking?". Can be with recruiter OR a team member — the key is it's an initial evaluation, not a decision-maker conversation. | Recruiter / Initial contact / Team member |
+| **Interview** | Substantive evaluation with the decision maker or hiring manager. Purpose: assess skills and fit in depth. If the person can make or strongly influence the hire decision = interview. | Hiring manager / MD / Decision maker |
+| **Offer** | Formal or informal offer made | — |
+| **Accepted** | User accepted the offer | — |
+| **Rejected** | Final rejection at any stage (by CV, after screening, after interview). Can coexist with Replied. | — |
+
+### How to tell Screening from Interview
+
+**Ask: can this person make the decision?**
+
+| Situation | Stage |
+| --------- | ----- |
+| Call with recruiter / HR about your background | **Screening** |
+| Call with team member who says "I'll report back to [decision maker]" | **Screening** |
+| Exploratory call where contact says "let me check with [MD/lead]" | **Screening** |
+| Meeting with hiring manager who makes the final call | **Interview** |
+| Meeting with MD / founder / director who decides | **Interview** |
+| Task / case study given after screening | **Interview** (part of it) |
+
+### Pipeline Table = Conversion Funnel
+
+The Pipeline table in `applications_index.md` tracks **how many applications ever reached each stage** (cumulative), not just current status. This is what gives meaningful conversion rates.
+
+**Current status** is tracked in the Active Applications table per app.
+
+**Example:** An app that went Sent → Replied → Screening → Rejected counts in ALL stages it passed through:
+- Sent: +1
+- Replied: +1
+- Screening: +1
+- Rejected: +1
+
+**Example:** An app rejected by CV without conversation only counts:
+- Sent: +1
+- Rejected: +1
+
+***
+
 ## Directory Structure
 
 ```

@@ -1,6 +1,6 @@
 # Applications
 
-This directory tracks all job and volunteer applications you've sent.
+This directory tracks all job and volunteer applications you've sent, plus batch outreach campaigns.
 
 Each application is stored as a separate folder with a **snapshot of the exact CV** that was sent — not a link to the role folder, because CVs in role folders evolve with each new JD.
 
@@ -22,17 +22,23 @@ CVs in `target_roles/my_data/role_[name]/cv.md` change over time — every new J
 applications/
 ├── README.md              ← this file
 └── my_data/
-    ├── README.md          ← how to add applications
-    ├── applications_index.md  ← master tracking file
-    └── app_[company]_[date]/
-        ├── cv_sent.md     ← snapshot of CV sent
-        ├── cover_email.md ← (optional) cover letter / email text
-        └── notes.md       ← (optional) responses, follow-ups
+    ├── README.md          ← how to add applications and campaigns
+    ├── applications_index.md  ← master tracking file (all apps + campaigns)
+    ├── app_[company]_[date]/  ← one per formal application
+    │   ├── cv_sent.md     ← frozen snapshot
+    │   └── cover_letter.md ← (optional) cover letter
+    └── campaign_[name]/       ← one per batch outreach campaign
+        ├── outreach_plan.md   ← companies, tracks, priorities, status + stats
+        ├── cold_outreach_templates.md  ← message templates by cluster
+        ├── cv_sent.md         ← CV snapshot for batch
+        └── messages/          ← sent message drafts
+            └── [company].md
 ```
 
 ***
 
 ## See also
 
-- **Skill:** `.claude/skills/applications/SKILL.md` — full workflow for AI
-- **CLAUDE.md** — project overview including applications workflow
+- **Skill:** `.claude/skills/applications/SKILL.md` — application tracking workflow
+- **Skill:** `.claude/skills/hypotheses/SKILL.md` — campaigns and routing rules
+- **CLAUDE.md** — project overview

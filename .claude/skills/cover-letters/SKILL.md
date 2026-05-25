@@ -222,6 +222,17 @@ See `references/` for:
 
 ---
 
+## 📎 External References
+
+Дополнительные материалы из открытых/закрытых источников (гайды, статьи, скриншоты, конспекты курсов) лежат в `/references/cover-letters/` на уровне проекта.
+
+- Source of truth для скилла — шаблоны в `references/` внутри самого скилла
+- Внешка — для вдохновения, дополнительных приёмов и примеров
+- Индекс источников: `/references/cover-letters/sources.md`
+- Как добавить новый материал: см. `/references/README.md`
+
+---
+
 ## 🤖 Related Skills
 
 - **starr-achievements** — source of achievement stories for CL bullets
